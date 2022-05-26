@@ -10,8 +10,9 @@
 	flex-direction: column;
 }
 
-header, footer {
+header {
 	background: #914;
+	-webkit-app-region: drag;
 }
 
 header * {
