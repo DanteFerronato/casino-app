@@ -1,0 +1,9 @@
+{
+  "name": "casino-app",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^19.0.1"
+  }
+}
