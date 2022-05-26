@@ -18,13 +18,21 @@ header * {
 	background: none;
 	color: #cb2;
 	text-decoration: none;
+	height: 30px;
 }
 
 #balance-container {
-	margin: auto 20px auto;
+	margin: 1% 20px 1%;
 	border: 1px solid #cb2;
 	padding: 10px;
-	height: content;
+
+}
+
+#balance-container a, h2{
+	position: relative;
+	vertical-align: middle;
+	height: fit-content;
+	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #balance-container * {
@@ -38,12 +46,13 @@ header * {
 
 ul {
 	flex-direction: row;
+
 }
 
 #window-controls {
 	position: absolute;
-	right: 30px;
-	top: 0;
+	right: 5px;
+	top:5px
 }
 
 #window-controls li {
