@@ -1,5 +1,6 @@
 {
   "name": "casino-app",
+  "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
