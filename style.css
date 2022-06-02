@@ -23,7 +23,7 @@ header * {
 }
 
 #balance-container {
-	margin: 1% 20px 1%;
+	
 	border: 1px solid #cb2;
 	padding: 10px;
 
@@ -86,3 +86,5 @@ section h1 {
 	height: 30px;
 	width: 30px;
 }
+
+
