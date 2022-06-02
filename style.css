@@ -12,6 +12,7 @@
 
 header {
 	background: #914;
+	-webkit-app-region: drag;
 }
 
 
@@ -45,7 +46,7 @@ header * {
 
 ul {
 	flex-direction: row;
-
+	-webkit-app-region: none;
 }
 
 #window-controls {
