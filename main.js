@@ -1,8 +1,15 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 
 function createWindow () {
+
+  try {
+    require("electron-reloader")(module)
+  } catch (e) {
+    
+  }
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
@@ -22,6 +29,19 @@ function createWindow () {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+
+  ipcMain.on("minimise", () => {
+    mainWindow.minimize()
+  })
+  
+  ipcMain.on("maximise", () => {
+    if (mainWindow.isMaximised) {mainWindow.unmaximize()}
+    else {mainWindow.maximize()}
+  })
+  
+  ipcMain.on("close", () => {
+    mainWindow.close()
+  })
 }
 
 // This method will be called when Electron has finished
@@ -46,3 +66,5 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+

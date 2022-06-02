@@ -12,8 +12,8 @@
 
 header {
 	background: #914;
-	-webkit-app-region: drag;
 }
+
 
 header * {
 	background: none;
@@ -23,10 +23,9 @@ header * {
 }
 
 #balance-container {
-	
 	border: 1px solid #cb2;
 	padding: 10px;
-
+	-webkit-app-region: drag;
 }
 
 #balance-container a, h2{
