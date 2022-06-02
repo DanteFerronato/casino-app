@@ -19,19 +19,18 @@ header * {
 	background: none;
 	color: #cb2;
 	text-decoration: none;
-	height: 30px;
+	height: 50px;
 }
 
 #balance-container {
 	border: 1px solid #cb2;
-	padding: 10px;
-	-webkit-app-region: drag;
 }
 
 #balance-container a, h2{
 	position: relative;
 	vertical-align: middle;
 	height: fit-content;
+	text-decoration: none;
 	font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
