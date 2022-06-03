@@ -35,8 +35,14 @@ function createWindow () {
   })
   
   ipcMain.on("maximise", () => {
-    if (mainWindow.isMaximised) {mainWindow.unmaximize()}
-    else {mainWindow.maximize()}
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize()
+      mainWindow.webContents.send("maximiseBtn")
+    }
+    else {
+      mainWindow.maximize()
+      mainWindow.webContents.send("unmaximiseBtn")
+    }
   })
   
   ipcMain.on("close", () => {
