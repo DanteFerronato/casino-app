@@ -102,3 +102,8 @@ section h1 {
 #layout-container {
 	flex: 4;
 }
+
+#bet-input {
+	flex: 0;
+	visibility: hidden;
+}
