@@ -98,3 +98,7 @@ section h1 {
 #roulette-container {
 	flex: 1;
 }
+
+#layout-container {
+	flex: 4;
+}
