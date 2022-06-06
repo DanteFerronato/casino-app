@@ -97,7 +97,7 @@ section h1 {
 
 #roulette-container {
 	flex: 1;
-	animation: spin 5s infinite cubic-bezier(.34,.15,.54,.78)
+	animation: spin 8s infinite linear
 }
 
 #layout-container {
@@ -110,6 +110,6 @@ section h1 {
 
 @keyframes spin {
 	to {
-		transform: rotate(4turn)
+		transform: rotate(-2turn)
 	}
 }
