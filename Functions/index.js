@@ -27,3 +27,12 @@ ipcRenderer.on("maximiseBtn", () => {
 ipcRenderer.on("unmaximiseBtn", () => {
     windowBtn.innerHTML = unmaximiseBtnSvg
 })
+
+roulette = document.getElementById("roulette-container")
+//Ball: 27-29
+
+function rouletteSpin() {
+    
+}
+
+roulette.addEventListener("click", rouletteSpin())
