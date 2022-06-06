@@ -39,8 +39,8 @@
     }
 
     #bet-layout {
-        grid-template-columns: 13.4vw repeat(3, 5.4vw 11.6vw) 5.4vw 13.4vw;
-        grid-template-rows: 13.4vw repeat(12, 5.4vw 11.6vw) 5.4vw 13.4vw;
+        grid-template-columns: 13.3vw repeat(3, 5.4vw 10.6vw) 5.4vw 13.3vw;
+        grid-template-rows: 13.3vw repeat(12, 5.4vw 10.6vw) 5.4vw 13.3vw;
     }
 }
 
@@ -58,6 +58,7 @@
     #bet-layout {
         grid-template-columns: 4vw repeat(12, 2vw 3vw) 4vw;
         grid-template-rows: repeat(3, 2vw 3vw) 2vw 4vw 5vw;
+        transform: translateY(-1vw);
     }
 }
 
@@ -1182,41 +1183,42 @@
     }
     #carpet-zero * {
         flex: 1;
+        flex-direction: column;
     }
     #carpet-low {
-        grid-row: 4;
+        grid-row: 5;
         grid-column: 2 / 4;
     }
     #carpet-high {
-        grid-row: 4;
+        grid-row: 5;
         grid-column: 12 / 14;
     }
     #carpet-even {
-        grid-row: 4;
+        grid-row: 5;
         grid-column: 4 / 6;
     }
     #carpet-odd {
-        grid-row: 4;
+        grid-row: 5;
         grid-column: 10 / 12;
     }
     #carpet-red {
-        grid-row: 4;
+        grid-row: 5;
         grid-column: 6 / 8;
     }
     #carpet-black {
-        grid-row: 4;
+        grid-row: 5;
         grid-column: 8 / 10;
     }
     #carpet-dz-1 {
-        grid-row: 3;
+        grid-row: 4;
         grid-column: 2 / 6;
     }
     #carpet-dz-2 {
-        grid-row: 3;
+        grid-row: 4;
         grid-column: 6 / 10;
     }
     #carpet-dz-3 {
-        grid-row: 3;
+        grid-row: 4;
         grid-column: 10 / 14;
     }
 
@@ -1990,39 +1992,39 @@
         grid-column: 1;
     }
     #betgrid-low {
-        grid-row: 8;
+        grid-row: 9;
         grid-column: 2 / 6;
     }
     #betgrid-high {
-        grid-row: 8;
+        grid-row: 9;
         grid-column: 23 / 26;
     }
     #betgrid-even {
-        grid-row: 8;
+        grid-row: 9;
         grid-column: 7 / 10;
     }
     #betgrid-odd {
-        grid-row: 8;
+        grid-row: 9;
         grid-column: 19 / 22;
     }
     #betgrid-red {
-        grid-row: 8;
+        grid-row: 9;
         grid-column: 11 / 14;
     }
     #betgrid-black {
-        grid-row: 8;
+        grid-row: 9;
         grid-column: 15 / 18;
     }
     #betgrid-dz-1 {
-        grid-row: 7;
+        grid-row: 8;
         grid-column: 2 / 10;
     }
     #betgrid-dz-2 {
-        grid-row: 7;
+        grid-row: 8;
         grid-column: 11 / 18;
     }
     #betgrid-dz-3 {
-        grid-row: 7;
+        grid-row: 8;
         grid-column: 19 / 27;
     }
 }
