@@ -6,6 +6,12 @@ function getBetInput() {
     return betInput
 }
 
+chipIndicator = document.getElementById("bet-input")
+function getChipIndicator() {
+    chipIndicator = document.getElementById("chip-indicator")
+    return chipIndicator
+}
+
 inputOpen = false
 
 for (let i=1; i<26; i++) {
@@ -31,9 +37,11 @@ specialCells = new Array (
 )
 
 function betInterface(cell) {
-    //cell.addEventListener("mouseover", () => {
-            
-    //})
+    cell.addEventListener("mouseover", () => {
+        cell.insertBefore(chipIndicator, null)
+        getChipIndicator()
+        chipIndicator.setAttribute("visibility", "visible")
+    })
     cell.addEventListener("click", () => {
         if (!inputOpen) {
             cell.insertBefore(betInput, null)

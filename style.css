@@ -103,7 +103,6 @@ section h1 {
 	flex: 4;
 }
 
-#bet-input {
+#bet-input, #chip-indicator {
 	flex: 0;
-	visibility: hidden;
 }
