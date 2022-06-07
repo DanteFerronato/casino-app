@@ -75,7 +75,7 @@ ul {
 
 section {
 	background: #813;
-	padding: 50px;
+	padding: 10px 50px 10px;
 }
 
 section h1 {
@@ -97,7 +97,43 @@ section h1 {
 
 #roulette-container {
 	flex: 1;
+}
+
+#roulette-container * {
+	left: 0;
+	top: 0;
+	width: 25vh;
+	height: 25vh;
+	overflow: hidden;
+}
+
+.roulette-spinning {
 	animation: spin 8s infinite linear
+}
+
+#roulette-ball {
+	width: 0;
+	height: 0;
+}
+
+#roulette-ball svg {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	width: 0.7vh;
+	height: 0.7vh;
+}
+
+@media only screen and (min-width: 576px){
+	#roulette-container * {
+		width: 25vw;
+		height: 25vw;
+	}
+
+	#roulette-ball svg {
+		width: 0.7vw;
+		height: 0.7vw;
+	}
 }
 
 #layout-container {
@@ -111,5 +147,11 @@ section h1 {
 @keyframes spin {
 	to {
 		transform: rotate(-2turn)
+	}
+}
+
+@keyframes ball-spinning {
+	to {
+		transform: rotate(28turn)
 	}
 }

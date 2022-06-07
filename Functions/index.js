@@ -29,7 +29,6 @@ ipcRenderer.on("unmaximiseBtn", () => {
 })
 
 roulette = document.getElementById("roulette-container")
-//Ball: 27-29
 
 function rouletteSpin() {
     

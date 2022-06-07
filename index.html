@@ -38,8 +38,18 @@
 				</ul>
 			</header>
 			<section class="flex-column flex-sm-row">
-				<div id="roulette-container">
-					<img src="res/americanRoulette.svg"></img>
+				<div id="roulette-container" class="m-auto">
+					<div class="position-relative">
+						<img src="res/lowerBorder.svg" id="lower-border" class="position-absolute img-fluid">
+						<img src="res/americanRoulette.svg" id="wheel" class="position-absolute img-fluid roulette-spinning">
+						<div class="position-absolute" id="roulette-ball">
+							<svg viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px">
+								<circle cx="1" cy="1" r="1" stroke="none" fill="white"/>
+							</svg>
+						</div>
+						<img src="res/upperBorder.svg" id="upper-border" class="position-absolute img-fluid">
+						<img src="res/handle.svg" id="handle" class="position-absolute img-fluid roulette-spinning">
+					</div>
 				</div>
 				<div id="layout-container" class="m-auto mt-3">
 					<div id="layout" class="m-auto">
