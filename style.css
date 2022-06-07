@@ -74,8 +74,10 @@ ul {
 }
 
 section {
-	background: #813;
+	background-image: url(res/MesaCasino.png);
 	padding: 50px;
+	background-repeat: no-repeat;
+	background-color: transparent;
 }
 
 section h1 {
