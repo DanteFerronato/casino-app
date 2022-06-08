@@ -1,6 +1,9 @@
 * {
-	
 	overflow-y:hidden;
+}
+
+body {
+	background-color: #cb2;
 }
 
 #wrapper, #wrapper * {
@@ -74,9 +77,12 @@ ul {
 }
 
 section {
-	background: #813;
-	padding: 10px 50px 10px;
-}
+	background-image: url(res/MesaCasino.png);
+	background-repeat:no-repeat;
+	background-size: cover;
+	margin: 20px;
+	height: 360px;	
+  }
 
 section h1 {
 	font-size: 50px;
@@ -96,7 +102,7 @@ section h1 {
 }
 
 #roulette-container {
-	flex: 1;
+	flex: 1.5;
 }
 
 #roulette-container * {
