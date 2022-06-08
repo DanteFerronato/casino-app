@@ -2,6 +2,8 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 
+const aspectRatio = 1.5
+
 function createWindow () {
 
   try {
@@ -47,6 +49,14 @@ function createWindow () {
   
   ipcMain.on("close", () => {
     mainWindow.close()
+  })
+
+  mainWindow.on("resize", () => {
+    if(mainWindow.width>576) {
+      mainWindow.setAspectRatio(aspectRatio)
+    } else {
+      mainWindow.setAspectRatio(1/aspectRatio)
+    }
   })
 }
 
