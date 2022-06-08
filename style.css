@@ -120,8 +120,8 @@ section h1 {
 	position: relative;
 	top: 50%;
 	left: 50%;
-	width: 0.7vh;
-	height: 0.7vh;
+	width: 0.6vh;
+	height: 0.6vh;
 }
 
 @media only screen and (min-width: 576px){
@@ -150,8 +150,7 @@ section h1 {
 	}
 }
 
-@keyframes ball-spinning {
-	to {
-		transform: rotate(28turn)
-	}
+/* For dev purposes */
+#roulette-ball {
+    border: 1px dashed grey;
 }

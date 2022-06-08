@@ -20,10 +20,6 @@
     grid-template-rows: 57.5px repeat(12, 25px 45px) 25px 57.5px;
 }
 
-#bet-layout *:not(#bet-input, #chip-indicator) {
-    border: 1px dashed grey;
-}
-
 @media only screen and (max-width: 450px){
     section {
         padding: 10vw
@@ -2045,4 +2041,9 @@
     #carpet-high p, #carpet-odd p, #carpet-black p {
         transform: none;
     }
+}
+
+/* For dev purposes */
+#bet-layout *:not(#bet-input, #chip-indicator) {
+    border: 1px dashed grey;
 }
