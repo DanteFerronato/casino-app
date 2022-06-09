@@ -2,8 +2,8 @@
 	overflow-y:hidden;
 }
 
-body {
-	background-color: #cb2;
+body, #wrapper {
+	background-color: #0000 !important;
 }
 
 #wrapper, #wrapper * {
@@ -77,9 +77,9 @@ ul {
 }
 
 section {
-	background: url(res/MesaCasino.png) no-repeat top left /
-	cover !important;
-  }
+	background: url(res/MesaCasino.png) no-repeat top left / cover !important;
+	margin: 20px;
+}
 
 section h1 {
 	font-size: 50px;
@@ -121,10 +121,10 @@ section h1 {
 
 #roulette-ball svg {
 	position: relative;
-	top: 50%;
-	left: 50%;
-	width: 0.7vh;
-	height: 0.7vh;
+	top: 0;
+	left: 0;
+	width: 0.6vh;
+	height: 0.6vh;
 }
 
 @media only screen and (min-width: 576px){
@@ -153,8 +153,9 @@ section h1 {
 	}
 }
 
-@keyframes ball-spinning {
-	to {
-		transform: rotate(28turn)
-	}
+/* For dev purposes */
+#roulette-ball {
+    border: 1px dashed grey;
 }
+
+/*background: 630x300 & 600x275*/
