@@ -77,11 +77,8 @@ ul {
 }
 
 section {
-	background-image: url(res/MesaCasino.png);
-	background-repeat:no-repeat;
-	background-size: cover;
-	margin: 20px;
-	height: 360px;	
+	background: url(res/MesaCasino.png) no-repeat top left /
+	cover !important;
   }
 
 section h1 {
