@@ -15,20 +15,20 @@ body, #wrapper {
 }
 
 header {
-	background: #914;
+	background: #000;
 	-webkit-app-region: drag;
 }
 
 
 header * {
 	background: none;
-	color: #cb2;
+	color: #FFFAFF;
 	text-decoration: none;
 	height: 45px;
 }
 
 #balance-container {
-	border: 1px solid #cb2;
+	border: 1px solid #E5E5E5;
 }
 
 #balance-container a, h2{
@@ -56,16 +56,15 @@ ul {
 #window-controls {
 	position: absolute;
 	right: 0px;
-	
-	
 }
 
 #window-controls li {
 	padding: 10px;
+	color: white;
 }
 
 #window-controls li:hover {
-	background-color: #828282;
+	background-color: #FC5130;
 	top: 0;
 	right: 0;
 	transition: .5s;
@@ -74,6 +73,7 @@ ul {
 #window-controls svg {
 	height: 20px;
 	width: 20px;
+	color: white;
 }
 
 section {
@@ -83,7 +83,7 @@ section {
 
 section h1 {
 	font-size: 50px;
-	color: #cb2;
+	color: #FCA311;
 	text-decoration: underline;
 }
 
