@@ -121,8 +121,8 @@ section h1 {
 
 #roulette-ball svg {
 	position: relative;
-	top: 50%;
-	left: 50%;
+	top: 0;
+	left: 0;
 	width: 0.6vh;
 	height: 0.6vh;
 }
@@ -157,3 +157,5 @@ section h1 {
 #roulette-ball {
     border: 1px dashed grey;
 }
+
+/*background: 630x300 & 600x275*/
