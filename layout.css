@@ -21,10 +21,6 @@
 }
 
 @media only screen and (max-width: 450px){
-    section {
-        padding: 10vw
-    }
-
     #layout {
         grid-template-columns: repeat(5, 16vw);
         grid-template-rows: repeat(14, 16vw);

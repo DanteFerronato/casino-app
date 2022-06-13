@@ -2,7 +2,9 @@
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 
-const aspectRatio = 1.5
+const headerHeight = 60
+const tableWidth = 630
+const tableHeight = 300
 
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
@@ -13,10 +15,10 @@ function createWindow () {
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    minWidth: 600,
-    minHeight: 400,
+    width: 630*1.8,
+    height: 360*1.8,
+    minWidth: 630*0.6,
+    minHeight: 360*0.6,
     frame: false,
     transparent: true,
     webPreferences: {
@@ -53,7 +55,8 @@ function createWindow () {
   })
 
   mainWindow.on("resize", () => {
-    if(mainWindow.width>576) {
+    let aspectRatio = tableWidth / (tableHeight+headerHeight)
+    if(mainWindow.getBounds().width>576) {
       mainWindow.setAspectRatio(aspectRatio)
     } else {
       mainWindow.setAspectRatio(1/aspectRatio)

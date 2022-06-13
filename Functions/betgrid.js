@@ -41,7 +41,8 @@ function betInterface(cell) {
         cell.insertBefore(chipIndicator, null)
         getChipIndicator()
         chipIndicator.setAttribute("visibility", "visible")
-        chipIndicator.setAttribute("style", "left: "+(cell.clientWidth-chipIndicator.clientWidth)/2+";top:"+cell.clientHeight-chipIndicator.clientHeight)/2
+        chipIndicator.setAttribute("style", "left: "+(cell.clientWidth-chipIndicator.clientWidth)/2+";top:"+(cell.clientHeight-chipIndicator.clientHeight)/2)
+        console.log(chipIndicator.getAttribute("style"))
     })
     cell.addEventListener("click", () => {
         if (!inputOpen) {
