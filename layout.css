@@ -14,9 +14,10 @@
 }
 
 #bet-layout {
+    top: 0;
     display: grid;
-    grid-template-columns: calc(4fr/5) repeat(3, calc(2fr/5) calc(3fr/5)) calc(2fr/5) calc(4fr/5);
-    grid-template-rows: calc(4fr/5) repeat(12, calc(2fr/5) calc(3fr/5)) calc(2fr/5) calc(4fr/5);
+    grid-template-columns: 0.8fr repeat(3, 0.4fr 0.6fr) 0.4fr 0.8fr;
+    grid-template-rows: 0.8fr repeat(12, 0.4fr 0.6fr) 0.4fr 0.8fr;
 }
 
 @media only screen and (min-width: 576px){
@@ -30,9 +31,9 @@
 	}
 
     #bet-layout {
-        grid-template-columns: calc(4fr/5) repeat(12, calc(2fr/5) calc(3fr/5)) calc(2fr/5) calc(4fr/5);
-        grid-template-rows: repeat(3, calc(2fr/5) calc(3fr/5)) calc(2fr/5) calc(4fr/5) 1fr;
-        transform: translateY(-1vw);
+        top: calc(-100% / (5*9));
+        grid-template-columns: 0.8fr repeat(12, 0.4fr 0.6fr) 0.4fr 0.8fr;
+        grid-template-rows: repeat(3, 0.4fr 0.6fr) 0.4fr 0.8fr 1fr;
     }
 }
 
