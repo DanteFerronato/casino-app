@@ -1,7 +1,7 @@
 #layout {
 	display: grid;
-    grid-template-columns: repeat(5, 70px);
-    grid-template-rows: repeat(14, 70px);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(14, 1fr);
 }
 
 #layout p {
@@ -11,45 +11,27 @@
     font-family: serif;
     font-weight: bold;
     color: white;
-    font-size: 40px;
 }
 
 #bet-layout {
     display: grid;
-    grid-template-columns: 57.5px repeat(3, 25px 45px) 25px 57.5px;
-    grid-template-rows: 57.5px repeat(12, 25px 45px) 25px 57.5px;
-}
-
-@media only screen and (max-width: 450px){
-    #layout {
-        grid-template-columns: repeat(5, 16vw);
-        grid-template-rows: repeat(14, 16vw);
-    }
-
-    #layout p {
-        font-size: 9vw;
-    }
-
-    #bet-layout {
-        grid-template-columns: 13.3vw repeat(3, 5.4vw 10.6vw) 5.4vw 13.3vw;
-        grid-template-rows: 13.3vw repeat(12, 5.4vw 10.6vw) 5.4vw 13.3vw;
-    }
+    grid-template-columns: calc(4fr/5) repeat(3, calc(2fr/5) calc(3fr/5)) calc(2fr/5) calc(4fr/5);
+    grid-template-rows: calc(4fr/5) repeat(12, calc(2fr/5) calc(3fr/5)) calc(2fr/5) calc(4fr/5);
 }
 
 @media only screen and (min-width: 576px){
     #layout {
-        grid-template-columns: repeat(14, 5vw);
-        grid-template-rows: repeat(5, 5vw);
+        grid-template-columns: repeat(14, 1fr);
+        grid-template-rows: repeat(5, 1fr);
     }
 
     #layout p {
-        font-size: 2.9vw;
 		transform: rotate(-90deg);
 	}
 
     #bet-layout {
-        grid-template-columns: 4vw repeat(12, 2vw 3vw) 4vw;
-        grid-template-rows: repeat(3, 2vw 3vw) 2vw 4vw 5vw;
+        grid-template-columns: calc(4fr/5) repeat(12, calc(2fr/5) calc(3fr/5)) calc(2fr/5) calc(4fr/5);
+        grid-template-rows: repeat(3, calc(2fr/5) calc(3fr/5)) calc(2fr/5) calc(4fr/5) 1fr;
         transform: translateY(-1vw);
     }
 }

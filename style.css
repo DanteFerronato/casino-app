@@ -97,6 +97,7 @@ section {
 	top: calc(2500% / 300);
 	width: calc(25000% / 630);
 	height: calc(25000% / 300);
+	transform: scale(calc(35/33));
 }
 
 #roulette-container * {
