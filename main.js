@@ -3,7 +3,7 @@ const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 
 const headerHeight = 60
-const tableWidth = 630
+const tableWidth = 762
 const tableHeight = 300
 
 require('electron-reload')(__dirname, {
@@ -15,10 +15,10 @@ function createWindow () {
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 630*1.8,
-    height: 360*1.8,
-    minWidth: 630*0.6,
-    minHeight: 360*0.6,
+    width: 762*1.8,
+    height: 300*1.8+60,
+    minWidth: 762*0.6,
+    minHeight: 300*0.6+60,
     frame: false,
     transparent: true,
     webPreferences: {

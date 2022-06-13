@@ -93,9 +93,9 @@ section {
 }
 
 #roulette-container {
-	left: calc(2500% / 630);
+	left: calc(2500% / 762);
 	top: calc(2500% / 300);
-	width: calc(25000% / 630);
+	width: calc(25000% / 762);
 	height: calc(25000% / 300);
 	transform: scale(calc(35/33));
 }
@@ -125,10 +125,10 @@ section {
 }
 
 #layout-container {
-	right: calc(2500% / 630);
-	bottom: calc(2500% / 300);
-	width: calc(33000% / 630);
-	height: calc(calc(33000% * 5 / 14) / 300);
+	right: calc(3000% / 762);
+	bottom: calc(3000% / 300);
+	width: calc(43700% / 762);
+	height: calc(calc(43700% * 5 / 14) / 300);
 }
 
 #bet-input, #chip-indicator {
@@ -137,21 +137,21 @@ section {
 
 @media only screen and (max-width: 576px){
 	#main>img {
-		transform: rotate(90deg) scale(calc(630/300), calc(300/630));
+		transform: rotate(90deg) scale(calc(762/300), calc(300/762));
 	}
 
 	#roulette-container {
 		left: calc(2500% / 300);
-		top: calc(2500% / 630);
+		top: calc(2500% / 762);
 		width: calc(25000% / 300);
-		height: calc(25000% / 630);
+		height: calc(25000% / 762);
 	}
 
 	#layout-container {
-		left: calc(2500% / 300);
-		bottom: calc(2500% / 630);
-		width: calc(calc(33000% * 5 / 14) / 300);
-		height: calc(33000% / 630);
+		left: calc(3000% / 300);
+		bottom: calc(3000% / 762);
+		width: calc(calc(43700% * 5 / 14) / 300);
+		height: calc(43700% / 762);
 	}
 }
 
@@ -165,5 +165,3 @@ section {
 #roulette-ball {
     border: 1px dashed grey;
 }
-
-/*background: 630x300 & 600x275*/
