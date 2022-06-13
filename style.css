@@ -136,19 +136,21 @@ section {
 
 @media only screen and (max-width: 576px){
 	#main>img {
-		top: 0;
-		left: 60px;
-		width: 100vh;
-		height: 100vw;
-		transform: rotate(90deg) translate(0, 0);
+		transform: rotate(90deg) scale(calc(630/300), calc(300/630));
 	}
 
 	#roulette-container {
-
+		left: calc(2500% / 300);
+		top: calc(2500% / 630);
+		width: calc(25000% / 300);
+		height: calc(25000% / 630);
 	}
 
 	#layout-container {
-
+		left: calc(2500% / 300);
+		bottom: calc(2500% / 630);
+		width: calc(calc(33000% * 5 / 14) / 300);
+		height: calc(33000% / 630);
 	}
 }
 
