@@ -129,10 +129,7 @@ section {
 	bottom: calc(3000% / 300);
 	width: calc(43700% / 762);
 	height: calc(calc(43700% * 5 / 14) / 300);
-}
-
-#bet-input, #chip-indicator {
-	visibility: hidden;
+	overflow: visible;
 }
 
 @media only screen and (max-width: 576px){
@@ -159,6 +156,11 @@ section {
 	to {
 		transform: rotate(-2turn)
 	}
+}
+
+#chip-indicator, #chip-indicator * {
+	z-index: 11;
+	overflow: visible;
 }
 
 /* For dev purposes */

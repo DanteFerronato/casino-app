@@ -37,26 +37,22 @@ specialCells = new Array (
 )
 
 function betInterface(cell) {
-    console.log("f ",cell)
-    console.log(chipIndicator.attributes)
     cell.addEventListener("mouseover", () => {
-        cell.insertBefore(chipIndicator, null)
+        
         getChipIndicator()
-        chipIndicator.setAttribute("visibility", "visible")
-        chipIndicator.setAttribute("style", "left: "+(cell.clientWidth-chipIndicator.clientWidth)/2+";top:"+(cell.clientHeight-chipIndicator.clientHeight)/2)
-        console.log(chipIndicator.getAttribute("style"))
+        if (chipIndicator.classList.contains("invisible")) chipIndicator.classList.toggle("invisible")
+        chipIndicator.setAttribute("style", "left: "+(cell.clientWidth-chipIndicator.clientWidth)/2+"px;top:"+(cell.clientHeight-chipIndicator.clientHeight)/2+"px")
     })
     cell.addEventListener("click", () => {
         console.log("click", cell)
         if (!inputOpen) {
             cell.insertBefore(betInput, null)
             getBetInput()
-            console.log(betInput.getAttribute("visibility"),"",inputOpen)
-            betInput.setAttribute("visibility", "visible")
+            chipIndicator.classList.toggle("invisible")
         } else {
             cell.insertBefore(betInput, null)
             getBetInput()
-            betInput.setAttribute("visibility", "hidden")
+            chipIndicator.classList.toggle("invisible")
         }
         inputOpen = !inputOpen
     })

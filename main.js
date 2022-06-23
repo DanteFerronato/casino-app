@@ -55,11 +55,13 @@ function createWindow () {
   })
 
   mainWindow.on("resize", () => {
-    let aspectRatio = tableWidth / (tableHeight+headerHeight)
-    if(mainWindow.getBounds().width<576) {
-      aspectRatio = tableHeight / (tableWidth+headerHeight)
+    if(!mainWindow.isMaximized()){
+      let aspectRatio = tableWidth / (tableHeight+headerHeight)
+      if(mainWindow.getBounds().width<576) {
+        aspectRatio = tableHeight / (tableWidth+headerHeight)
+      }
+      mainWindow.setAspectRatio(aspectRatio)
     }
-    mainWindow.setAspectRatio(aspectRatio)
   })
 }
 
