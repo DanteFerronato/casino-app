@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
-//const db = require("./DB")
+const db = require("./DB")
 
 const headerHeight = 60
 const tableWidth = 762
