@@ -27,7 +27,7 @@
     overflow: visible;
 }
 
-@media only screen and (min-width: 576px){
+@media only screen and (min-width: 280.2919708029197px){
     #layout {
         grid-template-columns: repeat(14, 1fr);
         grid-template-rows: repeat(5, 1fr);
@@ -1000,7 +1000,7 @@
     grid-column: 9;
 }
 
-@media only screen and (min-width: 576px){
+@media only screen and (min-width: 280.2919708029197px){
 	#carpet-1-1 {
 		grid-row: 3;
 		grid-column: 2;
@@ -2011,7 +2011,7 @@
     }
 }
 
-@media only screen and (max-width: 576px){
+@media only screen and (max-width: 280.2919708029197px){
     #carpet-low p, #carpet-even p, #carpet-red p {
         transform: rotate(-90deg);
     }
@@ -2020,7 +2020,7 @@
     }
 }
 
-@media only screen and (min-width: 576px){
+@media only screen and (min-width: 280.2919708029197px){
     #carpet-low p, #carpet-even p, #carpet-red p {
         transform: none;
     }

@@ -1,10 +1,14 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
+//const db = require("./DB")
 
 const headerHeight = 60
 const tableWidth = 762
 const tableHeight = 300
+const aspectRatioH = tableWidth / (tableHeight+headerHeight)
+const aspectRatioV = tableHeight / (tableWidth+headerHeight)
+var aspectRatio = aspectRatioH
 
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
@@ -12,13 +16,15 @@ require('electron-reload')(__dirname, {
 });
 
 function createWindow () {
+  const { screen } = require('electron')
+  screenSize = screen.getPrimaryDisplay().size
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 762*1.8,
-    height: 300*1.8+60,
-    minWidth: 762*0.6,
-    minHeight: 300*0.6+60,
+    width: tableWidth*1.8,
+    height: tableHeight*1.8+headerHeight,
+    minWidth: tableHeight*0.3+headerHeight,
+    minHeight: tableWidth*0.3,
     frame: false,
     transparent: true,
     webPreferences: {
@@ -39,28 +45,41 @@ function createWindow () {
     mainWindow.minimize()
   })
   
-  ipcMain.on("maximise", () => {
+  function maximiseBtn () {
     if (mainWindow.isMaximized()) {
       mainWindow.unmaximize()
       mainWindow.webContents.send("maximiseBtn")
+      if(mainWindow.getBounds().width > screenSize.width-10){
+        aspectRatio = screenSize.width / screenSize.height
+      }
     }
     else {
       mainWindow.maximize()
       mainWindow.webContents.send("unmaximiseBtn")
+      aspectRatio = aspectRatioH
     }
-  })
+  }
+
+  ipcMain.on("maximise", () => {maximiseBtn()})
   
   ipcMain.on("close", () => {
     mainWindow.close()
   })
 
   mainWindow.on("resize", () => {
+    console.log(mainWindow.getBounds().width,"",mainWindow.isMaximized())
     if(!mainWindow.isMaximized()){
-      let aspectRatio = tableWidth / (tableHeight+headerHeight)
-      if(mainWindow.getBounds().width<576) {
-        aspectRatio = tableHeight / (tableWidth+headerHeight)
+      if(mainWindow.getBounds().width < aspectRatioV*screenSize.height) {
+        mainWindow.y = 0
+        aspectRatio = aspectRatioV
+      } else if(mainWindow.getBounds().width > screenSize.width-10) {
+        maximiseBtn()
+      } else {
+        aspectRatio = aspectRatioH
       }
       mainWindow.setAspectRatio(aspectRatio)
+    } else {
+      maximiseBtn()
     }
   })
 }

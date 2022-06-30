@@ -132,7 +132,7 @@ section {
 	overflow: visible;
 }
 
-@media only screen and (max-width: 576px){
+@media only screen and (max-width: 280.2919708029197px){
 	#main>img {
 		transform: rotate(90deg) scale(calc(762/300), calc(300/762));
 	}
