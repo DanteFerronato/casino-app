@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
-const db = require("./DB")
+//const db = require("./DB")
 
 const headerHeight = 60
 const tableWidth = 762
@@ -21,12 +21,15 @@ function createWindow () {
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: tableWidth*1.8,
-    height: tableHeight*1.8+headerHeight,
-    minWidth: tableHeight*0.3+headerHeight,
-    minHeight: tableWidth*0.3,
+    width: Math.round(tableWidth*1.4),
+    height: Math.round(tableHeight*1.4+headerHeight),
+    minWidth: Math.ceil(tableHeight*0.5+headerHeight),
+    minHeight: Math.ceil(tableWidth*0.5),
+    maxWidth: screenSize.width,
+    maxHeight: screenSize.height,
     frame: false,
     transparent: true,
+    fullscreenable: true,
     webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
@@ -56,11 +59,12 @@ function createWindow () {
     else {
       mainWindow.maximize()
       mainWindow.webContents.send("unmaximiseBtn")
-      aspectRatio = aspectRatioH
     }
   }
 
-  ipcMain.on("maximise", () => {maximiseBtn()})
+  ipcMain.on("maximise", () => {
+    maximiseBtn()
+  })
   
   ipcMain.on("close", () => {
     mainWindow.close()
@@ -72,14 +76,10 @@ function createWindow () {
       if(mainWindow.getBounds().width < aspectRatioV*screenSize.height) {
         mainWindow.y = 0
         aspectRatio = aspectRatioV
-      } else if(mainWindow.getBounds().width > screenSize.width-10) {
-        maximiseBtn()
       } else {
         aspectRatio = aspectRatioH
       }
       mainWindow.setAspectRatio(aspectRatio)
-    } else {
-      maximiseBtn()
     }
   })
 }

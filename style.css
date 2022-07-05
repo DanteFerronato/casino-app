@@ -7,12 +7,9 @@ body, #wrapper, section {
 }
 
 #wrapper {
-	display: flex;
-}
-
-#wrapper {
 	width: 100vw;
 	height: 100vh;
+	justify-content: space-between;
 }
 
 header {
@@ -80,7 +77,7 @@ ul {
 }
 
 section {
-	flex: 1;
+	aspect-ratio: 762 / 300;
 }
 
 #main>* {
