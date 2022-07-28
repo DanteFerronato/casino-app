@@ -3,18 +3,18 @@ This project consists of a desktop gambling app, eventually supporting user prof
 > Thorough the development of this app we will learn to use javascript tech such as
 **[Electron](https://github.com/electron)** and **[React](https://github.com/facebook/react)**!
 
-# Team
+## Team
 We are a team of two:\
 **Dante Ferronato** [![GitHub Logo](https://docs.github.com/assets/cb-803/images/site/favicon.svg)](https://github.com/DanteFerronato) and **Ignacio Bucchi** [![GitHub Logo](https://docs.github.com/assets/cb-803/images/site/favicon.svg)](https://github.com/NachoBOkita1)
 
-# Current Tasks
+## Current Tasks
 <!-- TO DO -->
 
-# Other Tasks
+### Other Tasks
 
-# Commit Policy
+## Commit Policy
 We aim for each side branch commit to represent a single task, whether successful or not.
 Ideally, the master branch should only be updated with merges when all branches are stable enough.
 
-# Further Information
-[Database Structure](/DB/README.md)
+## Further Information
++ [Database Structure](/DB/README.md)
