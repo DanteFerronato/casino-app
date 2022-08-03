@@ -1,18 +1,3 @@
-<style>
-    * {
-        animation: surge ease-in 1 2s
-    }
-
-    @keyframes surge {
-        from {
-            transform: translateY: 1000px;
-        }
-        to {
-            transform: none;
-        }
-    }
-</style>
-
 # Casino App
 This project consists of a desktop gambling app, eventually supporting user profiles, in-game purchases and multiple games.
 > Thorough the development of this app we will learn to use javascript tech such as
@@ -20,7 +5,7 @@ This project consists of a desktop gambling app, eventually supporting user prof
 
 ## Team
 We are a team of two:\
-[![GitHub Logo](https://docs.github.com/assets/cb-803/images/site/favicon.svg)](https://github.com/DanteFerronato)**Dante Ferronato** and [![GitHub Logo](https://docs.github.com/assets/cb-803/images/site/favicon.svg)](https://github.com/NachoBOkita1)**Ignacio Bucchi**
+[![GitHub Logo](https://docs.github.com/assets/cb-803/images/site/favicon.svg)](https://github.com/DanteFerronato) **Dante Ferronato** and [![GitHub Logo](https://docs.github.com/assets/cb-803/images/site/favicon.svg)](https://github.com/NachoBOkita1) **Ignacio Bucchi**
 
 ## Current Tasks
 <!-- TO DO -->
