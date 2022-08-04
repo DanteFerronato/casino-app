@@ -28,7 +28,7 @@ We are a team of two:\
     + [ ] 😔 Functional currency management
 
 ### Other Tasks
-+ [ ] Add roulette settings
++ [ ] 😔 Add roulette settings
     + [ ] 😔 French roulette
     + [ ] 😔 _Le Partage_ and _En Prison_ rules
 + [ ] 😔 Add a game selection menu
@@ -43,3 +43,5 @@ Ideally, the master branch should only be updated with merges when all branches 
 
 ## Further Information
 + [Database Structure](/DB/README.md)
+
+[<img src="https://www.creativefabrica.com/wp-content/uploads/2021/01/29/easter-egg-icon-Graphics-8169408-1-1-580x387.jpg" width="10px" height="10px">](https://www.aciprensa.com/imagespp/CarlosMenem-dominiopublico-14022021.jpg)
