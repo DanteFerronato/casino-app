@@ -1,8 +1,14 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
+//const db = require("./DB")
 
-const aspectRatio = 1.5
+const headerHeight = 60
+const tableWidth = 762
+const tableHeight = 300
+const aspectRatioH = tableWidth / (tableHeight+headerHeight)
+const aspectRatioV = tableHeight / (tableWidth+headerHeight)
+var aspectRatio = aspectRatioH
 
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
@@ -10,15 +16,20 @@ require('electron-reload')(__dirname, {
 });
 
 function createWindow () {
+  const { screen } = require('electron')
+  screenSize = screen.getPrimaryDisplay().size
 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    minWidth: 600,
-    minHeight: 400,
+    width: Math.round(tableWidth*1.4),
+    height: Math.round(tableHeight*1.4+headerHeight),
+    minWidth: Math.ceil(tableHeight*0.5+headerHeight),
+    minHeight: Math.ceil(tableWidth*0.5),
+    maxWidth: screenSize.width,
+    maxHeight: screenSize.height,
     frame: false,
     transparent: true,
+    fullscreenable: true,
     webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
@@ -37,15 +48,22 @@ function createWindow () {
     mainWindow.minimize()
   })
   
-  ipcMain.on("maximise", () => {
+  function maximiseBtn () {
     if (mainWindow.isMaximized()) {
       mainWindow.unmaximize()
       mainWindow.webContents.send("maximiseBtn")
+      if(mainWindow.getBounds().width > screenSize.width-10){
+        aspectRatio = screenSize.width / screenSize.height
+      }
     }
     else {
       mainWindow.maximize()
       mainWindow.webContents.send("unmaximiseBtn")
     }
+  }
+
+  ipcMain.on("maximise", () => {
+    maximiseBtn()
   })
   
   ipcMain.on("close", () => {
@@ -53,10 +71,15 @@ function createWindow () {
   })
 
   mainWindow.on("resize", () => {
-    if(mainWindow.width>576) {
+    console.log(mainWindow.getBounds().width,"",mainWindow.isMaximized())
+    if(!mainWindow.isMaximized()){
+      if(mainWindow.getBounds().width < aspectRatioV*screenSize.height) {
+        mainWindow.y = 0
+        aspectRatio = aspectRatioV
+      } else {
+        aspectRatio = aspectRatioH
+      }
       mainWindow.setAspectRatio(aspectRatio)
-    } else {
-      mainWindow.setAspectRatio(1/aspectRatio)
     }
   })
 }

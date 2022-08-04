@@ -1,4 +1,4 @@
-main_grid = Array()
+mainGrid = Array()
 
 betInput = document.getElementById("bet-input")
 function getBetInput() {
@@ -6,7 +6,7 @@ function getBetInput() {
     return betInput
 }
 
-chipIndicator = document.getElementById("bet-input")
+chipIndicator = document.getElementById("chip-indicator")
 function getChipIndicator() {
     chipIndicator = document.getElementById("chip-indicator")
     return chipIndicator
@@ -15,9 +15,9 @@ function getChipIndicator() {
 inputOpen = false
 
 for (let i=1; i<26; i++) {
-    main_grid.push(new Array())
+    mainGrid.push(new Array())
     for (let j=1; j<8; j++){
-        main_grid[i-1].push(document.getElementById("betgrid-"+i+"-"+j))
+        mainGrid[i-1].push(document.getElementById("betgrid-"+i+"-"+j))
     }
 }
 
@@ -38,21 +38,21 @@ specialCells = new Array (
 
 function betInterface(cell) {
     cell.addEventListener("mouseover", () => {
-        cell.insertBefore(chipIndicator, null)
+        
         getChipIndicator()
-        chipIndicator.setAttribute("visibility", "visible")
-        chipIndicator.setAttribute("style", "left: "+(cell.clientWidth-chipIndicator.clientWidth)/2+";top:"+cell.clientHeight-chipIndicator.clientHeight)/2
+        if (chipIndicator.classList.contains("invisible")) chipIndicator.classList.toggle("invisible")
+        chipIndicator.setAttribute("style", "left: "+(cell.clientWidth-chipIndicator.clientWidth)/2+"px;top:"+(cell.clientHeight-chipIndicator.clientHeight)/2+"px")
     })
     cell.addEventListener("click", () => {
+        console.log("click", cell)
         if (!inputOpen) {
             cell.insertBefore(betInput, null)
             getBetInput()
-            console.log(betInput.getAttribute("visibility"),"",inputOpen)
-            betInput.setAttribute("visibility", "visible")
+            chipIndicator.classList.toggle("invisible")
         } else {
             cell.insertBefore(betInput, null)
             getBetInput()
-            betInput.setAttribute("visibility", "hidden")
+            chipIndicator.classList.toggle("invisible")
         }
         inputOpen = !inputOpen
     })
@@ -60,7 +60,7 @@ function betInterface(cell) {
 
 for (let i=0; i<25; i++) {
     for (let j=0; j<7; j++){
-        let cell = main_grid[i][j]
+        let cell = mainGrid[i][j]
         betInterface(cell)
     }
 }

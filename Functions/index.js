@@ -28,6 +28,8 @@ ipcRenderer.on("unmaximiseBtn", () => {
     windowBtn.innerHTML = unmaximiseBtnSvg
 })
 
+var state = "idle"
+ 
 const roulette = document.getElementById("roulette-container")
 const ball = document.getElementById("roulette-ball")
 const ballMovement = document.getElementById("ball-movement")
