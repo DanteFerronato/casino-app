@@ -44,4 +44,4 @@ Ideally, the master branch should only be updated with merges when all branches 
 ## Further Information
 + [Database Structure](/DB/README.md)
 
-[<img src="https://www.creativefabrica.com/wp-content/uploads/2021/01/29/easter-egg-icon-Graphics-8169408-1-1-580x387.jpg" width="10px" height="10px">](https://www.aciprensa.com/imagespp/CarlosMenem-dominiopublico-14022021.jpg)
+[<img src="https://www.creativefabrica.com/wp-content/uploads/2021/03/12/easter-egg-flat-icon-pink-Graphics-9496393-1.png" width="10px" height="10px">](https://www.aciprensa.com/imagespp/CarlosMenem-dominiopublico-14022021.jpg)
