@@ -9,30 +9,30 @@ We are a team of two:\
 
 ## Current Tasks
 ### Design
-+ [x] Build main layout
-+ [x] Build roulette layout
-+ [x] Design a login starting prompt
-+ [ ] Add an in-game purchase menu
-+ [ ] Achieve consistency between designs
-+ [ ] Add a settings menu
++ [x] 😃 Build main layout
++ [x] 😃 Build roulette layout
++ [x] 😃 Design a login starting prompt
++ [ ] 😔 Add an in-game purchase menu
++ [ ] 😔 Achieve consistency between designs
++ [ ] 😔 Add a settings menu
 
 ### Functionality
-+ [ ] Make the roulette functional
-    + [x] Build a sensor grid over layout
-    + [ ] Make a functional betting chip
-    + [ ] Build the betting-results cycle
-    + [ ] Provide support for simultaneous multiuser gameplay
-+ [ ] Properly build and connect to the database
-    + [ ] Working database structure & link
-    + [ ] Functional user management
-    + [ ] Functional currency management
++ [ ] 😔 Make the roulette functional
+    + [x] 😃 Build a sensor grid over layout
+    + [ ] 😔 Make a functional betting chip
+    + [ ] 😔 Build the betting-results cycle
+    + [ ] 😔 Provide support for simultaneous multiuser gameplay
++ [ ] 😔 Properly build and connect to the database
+    + [ ] 😔 Working database structure & link
+    + [ ] 😔 Functional user management
+    + [ ] 😔 Functional currency management
 
 ### Other Tasks
 + [ ] Add roulette settings
-    + [ ] French roulette
-    + [ ] _Le Partage_ and _En Prison_ rules
-+ [ ] Add a game selection menu
-+ [ ] Add other games
+    + [ ] 😔 French roulette
+    + [ ] 😔 _Le Partage_ and _En Prison_ rules
++ [ ] 😔 Add a game selection menu
++ [ ] 😔 Add other games
     + **_Truco?_**
     + **_Slots?_**
     + **_Blackjack?_**
