@@ -3,6 +3,8 @@ const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
 //const db = require("./DB")
 
+const startWindow = process.env.START
+
 const headerHeight = 60
 const tableWidth = 762
 const tableHeight = 300
@@ -19,27 +21,45 @@ function createWindow () {
   const { screen } = require('electron')
   screenSize = screen.getPrimaryDisplay().size
 
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: Math.round(tableWidth*1.4),
-    height: Math.round(tableHeight*1.4+headerHeight),
-    minWidth: Math.ceil(tableHeight*0.5+headerHeight),
-    minHeight: Math.ceil(tableWidth*0.5),
-    maxWidth: screenSize.width,
-    maxHeight: screenSize.height,
-    frame: false,
-    transparent: true,
-    fullscreenable: true,
-    webPreferences: {
-        nodeIntegration: true,
-        contextIsolation: false,
-        devTools: true,
-      //preload: path.join(__dirname, 'preload.js')
-    }
-  })
+  if (startWindow == "LOGIN"){
+    // Create the browser window.
+    const mainWindow = new BrowserWindow({
+      frame: false,
+      transparent: true,
+      fullscreenable: true,
+      webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false,
+          devTools: true,
+        //preload: path.join(__dirname, 'preload.js')
+      }
+    })
 
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+    // and load the index.html of the app.
+    mainWindow.loadFile('index.html')
+  } else if (startWindow == "ROULETTE"){
+    // Create the browser window.
+    const mainWindow = new BrowserWindow({
+      width: Math.round(tableWidth*1.4),
+      height: Math.round(tableHeight*1.4+headerHeight),
+      minWidth: Math.ceil(tableHeight*0.5+headerHeight),
+      minHeight: Math.ceil(tableWidth*0.5),
+      maxWidth: screenSize.width,
+      maxHeight: screenSize.height,
+      frame: false,
+      transparent: true,
+      fullscreenable: true,
+      webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false,
+          devTools: true,
+        //preload: path.join(__dirname, 'preload.js')
+      }
+    })
+
+    // and load the index.html of the app.
+    mainWindow.loadFile('index.html')
+  }
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
