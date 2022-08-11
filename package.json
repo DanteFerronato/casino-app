@@ -2,8 +2,8 @@
   "name": "casino-app",
   "main": "main.js",
   "scripts": {
-    "start": "START=LOGIN electron .",
-    "start-roulette": "START=ROULETTE electron ."
+    "start": "set START=LOGIN && electron .",
+    "roulette": "set START=ROULETTE && electron ."
   },
   "devDependencies": {
     "electron": "^19.0.1"
