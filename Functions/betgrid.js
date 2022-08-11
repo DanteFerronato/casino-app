@@ -1,18 +1,17 @@
 mainGrid = Array()
 
-betInput = document.getElementById("bet-input")
-function getBetInput() {
-    betInput = document.getElementById("bet-input")
-    return betInput
+betInput = {
+    get get() {return document.getElementById("bet-input")}
 }
 
-chipIndicator = document.getElementById("chip-indicator")
-function getChipIndicator() {
-    chipIndicator = document.getElementById("chip-indicator")
-    return chipIndicator
+chipIndicator = {
+    get get() {return document.getElementById("chip-indicator")}
 }
 
 inputOpen = false
+
+chipValues = [1, 2.5, 5, 10, 25, 100]
+chipColours = ["#aaa", "#f9b", "#c22", "#22e", "#282", "#222"]
 
 for (let i=1; i<26; i++) {
     mainGrid.push(new Array())
@@ -36,25 +35,24 @@ specialCells = new Array (
     cellDz3 = document.getElementById("betgrid-dz-3"),
 )
 
+function moveAndCentre(cell, element) {
+    e = element.get
+    cell.insertBefore(e, null)
+    e = element.get
+    if (e.classList.contains("invisible")) e.classList.toggle("invisible")
+    e.setAttribute("style", "left: "+(cell.clientWidth-e.clientWidth)/2+"px;top:"+(cell.clientHeight-e.clientHeight)/2+"px")
+}
+
 function betInterface(cell) {
     cell.addEventListener("mouseover", () => {
-        
-        getChipIndicator()
-        if (chipIndicator.classList.contains("invisible")) chipIndicator.classList.toggle("invisible")
-        chipIndicator.setAttribute("style", "left: "+(cell.clientWidth-chipIndicator.clientWidth)/2+"px;top:"+(cell.clientHeight-chipIndicator.clientHeight)/2+"px")
+        moveAndCentre(cell, chipIndicator)
     })
     cell.addEventListener("click", () => {
         console.log("click", cell)
-        if (!inputOpen) {
-            cell.insertBefore(betInput, null)
-            getBetInput()
-            chipIndicator.classList.toggle("invisible")
-        } else {
-            cell.insertBefore(betInput, null)
-            getBetInput()
-            chipIndicator.classList.toggle("invisible")
-        }
-        inputOpen = !inputOpen
+        //if (!inputOpen) {
+            moveAndCentre(cell, betInput)
+        //}
+        //inputOpen = !inputOpen
     })
 }
 

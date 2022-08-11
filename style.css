@@ -122,9 +122,9 @@ section {
 }
 
 #layout-container {
-	right: calc(3000% / 762);
+	right: calc(3000vw / 762);
 	bottom: calc(3000% / 300);
-	width: calc(43700% / 762);
+	width: calc(43700vw / 762);
 	height: calc(calc(43700% * 5 / 14) / 300);
 	overflow: visible;
 }
@@ -153,6 +153,16 @@ section {
 	to {
 		transform: rotate(-2turn)
 	}
+}
+
+#bet-input, #chip-indicator>svg {
+	width: 4vw;
+	height: 4vw;
+}
+
+#bet-input input {
+	width: 3.5vw;
+	height: 3vw;
 }
 
 #chip-indicator, #chip-indicator * {

@@ -2,7 +2,8 @@
   "name": "casino-app",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "start-login": "START=LOGIN electron ."
   },
   "devDependencies": {
     "electron": "^19.0.1"

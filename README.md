@@ -15,6 +15,7 @@ We are a team of two:\
 + [ ] 😔 Add an in-game purchase menu
 + [ ] 😔 Achieve consistency between designs
 + [ ] 😔 Add a settings menu
++ [ ] 😔 Program a realistic roulette ball
 
 ### Functionality
 + [ ] 😔 Make the roulette functional
