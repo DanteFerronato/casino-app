@@ -1,17 +1,17 @@
-mainGrid = Array()
+const mainGrid = Array()
 
-betInput = {
+const betInput = {
     get get() {return document.getElementById("bet-input")}
 }
 
-chipIndicator = {
+const chipIndicator = {
     get get() {return document.getElementById("chip-indicator")}
 }
 
-inputOpen = false
+var inputOpen = false
 
-chipValues = [1, 2.5, 5, 10, 25, 100]
-chipColours = ["#aaa", "#f9b", "#c22", "#22e", "#282", "#222"]
+const chipValues = [1, 2.5, 5, 10, 25, 100]
+const chipColours = ["#aaa", "#f9b", "#c22", "#22e", "#282", "#222"]
 
 for (let i=1; i<26; i++) {
     mainGrid.push(new Array())
@@ -20,23 +20,23 @@ for (let i=1; i<26; i++) {
     }
 }
 
-specialCells = new Array (
-    cell0 = document.getElementById("betgrid-0"),
-    cell00 = document.getElementById("betgrid-00"),
-    cell000 = document.getElementById("betgrid-0-00"),
-    cellLow = document.getElementById("betgrid-low"),
-    cellHigh = document.getElementById("betgrid-high"),
-    cellEven = document.getElementById("betgrid-even"),
-    cellOdd = document.getElementById("betgrid-odd"),
-    cellRed = document.getElementById("betgrid-red"),
-    cellBlack = document.getElementById("betgrid-black"),
-    cellDz1 = document.getElementById("betgrid-dz-1"),
-    cellDz2 = document.getElementById("betgrid-dz-2"),
-    cellDz3 = document.getElementById("betgrid-dz-3"),
-)
+const specialCells = [
+    document.getElementById("betgrid-0"),
+    document.getElementById("betgrid-00"),
+    document.getElementById("betgrid-0-00"),
+    document.getElementById("betgrid-low"),
+    document.getElementById("betgrid-high"),
+    document.getElementById("betgrid-even"),
+    document.getElementById("betgrid-odd"),
+    document.getElementById("betgrid-red"),
+    document.getElementById("betgrid-black"),
+    document.getElementById("betgrid-dz-1"),
+    document.getElementById("betgrid-dz-2"),
+    document.getElementById("betgrid-dz-3"),
+]
 
 function moveAndCentre(cell, element) {
-    e = element.get
+    let e = element.get
     cell.insertBefore(e, null)
     e = element.get
     if (e.classList.contains("invisible")) e.classList.toggle("invisible")

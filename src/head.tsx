@@ -15,8 +15,8 @@ function Head(args: {window: string}) {
             extraHead = <>
                 <link rel="stylesheet" href="roulette.css" />
                 <link rel="stylesheet" href="roulette-layout.css" />
-                <script defer src="Functions/roulette.js" />
-                <script defer src="Functions/rouletteBetgrid.js" />
+                <script defer src="Functions/roulette.ts" />
+                <script defer src="Functions/rouletteBetgrid.ts" />
                 <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossOrigin="anonymous" />
                 <style id="ball-movement" />
             </>
