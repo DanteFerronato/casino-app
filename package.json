@@ -1,6 +1,6 @@
 {
   "name": "casino-app",
-  "main": "main.js",
+  "main": "main.ts",
   "scripts": {
     "start": "set START=LOGIN && electron .",
     "roulette": "set START=ROULETTE && electron .",
@@ -34,5 +34,17 @@
   "bugs": {
     "url": "https://github.com/DanteFerronato/casino-app/issues"
   },
-  "homepage": "https://github.com/DanteFerronato/casino-app#readme"
+  "homepage": "https://github.com/DanteFerronato/casino-app#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

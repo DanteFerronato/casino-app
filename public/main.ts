@@ -3,9 +3,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 //const db = require("./DB")
 
-const { screen } = require('electron')
-
-const startWindow = process.env.START.trim()
+const startWindow = process.env.START?.trim()
 
 console.log("ENV:", startWindow);
 
@@ -29,7 +27,6 @@ function createWindow() {
   if (startWindow == "LOGIN") {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-      isMaximized: true,
       frame: false,
       transparent: true,
       fullscreenable: true,
@@ -45,7 +42,8 @@ function createWindow() {
     // and load the index.html of the app.
     mainWindow.loadFile('login.html')
   } else if (startWindow == "ROULETTE") {
-    screenSize = screen.getPrimaryDisplay().size
+    var { screen } = require('electron')
+    var screenSize = screen.getPrimaryDisplay().size
     // Create the browser window.
     mainWindow = new BrowserWindow({
       width: Math.round(tableWidth * 1.4),
@@ -66,7 +64,7 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    mainWindow.loadFile('roulette.html')
+    mainWindow.loadFile('index.html')
   }
 
   // Open the DevTools.
