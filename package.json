@@ -2,7 +2,8 @@
   "name": "casino-app",
   "main": "main.ts",
   "scripts": {
-    "start": "set START=LOGIN && electron .",
+    "start": "cd src\\my-app-type && npm start",
+    "login": "set START=LOGIN && electron .",
     "roulette": "set START=ROULETTE && electron .",
     "build": "tsc",
     "react": "react-scripts start"
