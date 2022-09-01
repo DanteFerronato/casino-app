@@ -4,7 +4,8 @@
   "scripts": {
     "start": "set START=LOGIN && electron .",
     "roulette": "set START=ROULETTE && electron .",
-    "build": "tsc"
+    "build": "tsc",
+    "react": "react-scripts start"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
