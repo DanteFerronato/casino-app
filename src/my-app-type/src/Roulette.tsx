@@ -21,11 +21,6 @@ function Roulette() {
                         </div>
                     </div>
                     <Layout />
-                    <div id={style["chip-indicator"]}>
-                        <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="7" cy="7" r="5" stroke="white" stroke-width="1" stroke-dasharray="3 1" fill="none"/>
-                        </svg>
-                    </div>
                 </div>
             </section>
         </div>

@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { JsxElement } from 'typescript';
 import style from "./style/roulette.module.css"
 
 function Layout() {
@@ -48,32 +49,44 @@ function Layout() {
                 <div id={style["betgrid-dz-2"]}></div>
                 <div id={style["betgrid-dz-3"]}></div>
             </div>
+            <BetInput />
+            <ChipIndicator />
         </div>
     )
 }
 
-function BetInput(params : {
-    
+var inputLocation = ""
+var indicatorLocation = ""
+
+function Chip(params : {
+    name : string,
+    inner : JSX.Element | JSX.Element[]
 }) {
     return (
-        <div id={style["bet-input"]}>
-            <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="7" cy="7" r="5.5" stroke="none" fill="#ddd"/>
-                <circle cx="7" cy="7" r="2" stroke="gold" fill="none"/>
-                <circle cx="7" cy="7" r="5" stroke="gold" strokeWidth="1" strokeDasharray="3 2" fill="none"/>
-            </svg>
-            <input type="number" min="0" max="999" />
-        </div>
+        <div className={style["chip"]} id={style[params.name]}>{params.inner}</div>
+    )
+}
+
+function BetInput() {
+    return (
+        <Chip name="bet-input" inner={[
+                <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="7" cy="7" r="5.5" stroke="none" fill="#ddd"/>
+                    <circle cx="7" cy="7" r="2" stroke="gold" fill="none"/>
+                    <circle cx="7" cy="7" r="5" stroke="gold" strokeWidth="1" strokeDasharray="3 2" fill="none"/>
+                </svg>,
+                <input type="number" min="0" max="999" />
+        ]} />
     )
 }
 
 function ChipIndicator() {
     return (
-        <div id={style["chip-indicator"]}>
+        <Chip name="chip-indicator" inner={
             <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1" strokeDasharray="3 1" fill="none"/>
-            </svg>
-        </div>
+            <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1" strokeDasharray="3 1" fill="none"/>
+        </svg>
+        } />
     )
 }
 
@@ -107,8 +120,6 @@ function BetgridCell(params : {
     n : Array<number> | null,
     name : string | null,
 }) {
-    const [betInputLocation, setInputLocation] = useState("")
-    const [chipIndicatorLocation, setIndicatorLocation] = useState("")
     let single = params.type == "single"
     let double = params.type == "double"
     let special = params.type == "special"
@@ -129,19 +140,31 @@ function BetgridCell(params : {
 
     return (
         <div id={"betgrid-"+name} style={!special? {"gridArea" : 7-row! + " / " + column!}:{}} onClick={e=>{
-            console.log("click ",name)
-            setInputLocation(name)
+            console.log("click ", name)
+            inputLocation = name
         }} onMouseOver={e=>{
-            setIndicatorLocation(name)
-        }}>
-            {betInputLocation == name? betInput : <></>}
-            {chipIndicatorLocation == name? chipIndicator : <></>}
-        </div>
+            indicatorLocation = name
+        }} />
     )
 }
+const gridToPosition = (columns : number[], rows : number[]) => {
+    let listCummulate = (list : number[]) => {
+        let sum = 0
+        let sumList = [sum]
+        for (const e in list) {
+            if (Object.prototype.hasOwnProperty.call(list, e)) {
+                sum += list[e]
+                sumList.push(sum)
+            };
+        }
+        let newList = sumList.map(e => {
+            100*e/sum+"%"
+        });
+        return newList
+    }
+    return [listCummulate(columns), listCummulate(rows)]
+}
 
-var betInput = <BetInput />
-var chipIndicator = <ChipIndicator />
 var inputOpen = false
 
 const chipValues = [1, 2.5, 5, 10, 25, 100]

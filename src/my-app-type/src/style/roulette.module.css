@@ -154,7 +154,7 @@ section {
 }
 
 /* For dev purposes */
-#bet-layout>*:not(#bet-input, #chip-indicator) {
+#bet-layout>*:not(.chip) {
     border: 1px dashed grey;
 }
 
@@ -188,11 +188,14 @@ section {
 	}
 }
 
-#bet-input, #chip-indicator {
+.chip {
 	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
 }
 
-#bet-input, #chip-indicator>svg {
+.chip>svg {
 	width: 4vw;
 	height: 4vw;
 }
