@@ -1,8 +1,10 @@
+import mongoose, { Mongoose, Schema } from "mongoose"
+
 const goose = require("mongoose")
 //goose.connect("mongodb://localhost:27017/casino-app")
-goose.connect("mongodb://localhost:27017/test").then((result) => {
-
-}).catch((e) => {
+goose.connect("mongodb://localhost:27017/test").then((result : any) => {
+    
+}).catch((e : Event) => {
 
 })
 
@@ -34,3 +36,5 @@ goose.model("Bets", new Schema({ // Lists all current and past bets made in all 
     betTime: Date, // Date and time of bet creation (or of move if it's a moved bet)
     deathTime: Date, // Date and time when the bet was won/lost/moved
 }))
+
+export default goose

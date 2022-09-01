@@ -9,30 +9,31 @@ We are a team of two:\
 
 ## Current Tasks
 ### Design
-+ [x] Build main layout
-+ [x] Build roulette layout
-+ [x] Design a login starting prompt
-+ [ ] Add an in-game purchase menu
-+ [ ] Achieve consistency between designs
-+ [ ] Add a settings menu
++ [x] 😃 Build main layout
++ [x] 😃 Build roulette layout
++ [x] 😃 Design a login starting prompt
++ [ ] 😔 Add an in-game purchase menu
++ [ ] 😔 Achieve consistency between designs
++ [ ] 😔 Add a settings menu
++ [ ] 😔 Program a realistic roulette ball
 
 ### Functionality
-+ [ ] Make the roulette functional
-    + [x] Build a sensor grid over layout
-    + [ ] Make a functional betting chip
-    + [ ] Build the betting-results cycle
-    + [ ] Provide support for simultaneous multiuser gameplay
-+ [ ] Properly build and connect to the database
-    + [ ] Working database structure & link
-    + [ ] Functional user management
-    + [ ] Functional currency management
++ [ ] 😔 Make the roulette functional
+    + [x] 😃 Build a sensor grid over layout
+    + [ ] 😔 Make a functional betting chip
+    + [ ] 😔 Build the betting-results cycle
+    + [ ] 😔 Provide support for simultaneous multiuser gameplay
++ [ ] 😔 Properly build and connect to the database
+    + [ ] 😔 Working database structure & link
+    + [ ] 😔 Functional user management
+    + [ ] 😔 Functional currency management
 
 ### Other Tasks
-+ [ ] Add roulette settings
-    + [ ] French roulette
-    + [ ] _Le Partage_ and _En Prison_ rules
-+ [ ] Add a game selection menu
-+ [ ] Add other games
++ [ ] 😔 Add roulette settings
+    + [ ] 😔 French roulette
+    + [ ] 😔 _Le Partage_ and _En Prison_ rules
++ [ ] 😔 Add a game selection menu
++ [ ] 😔 Add other games
     + **_Truco?_**
     + **_Slots?_**
     + **_Blackjack?_**
@@ -43,3 +44,5 @@ Ideally, the master branch should only be updated with merges when all branches 
 
 ## Further Information
 + [Database Structure](/DB/README.md)
+
+[<img src="https://www.creativefabrica.com/wp-content/uploads/2021/03/12/easter-egg-flat-icon-pink-Graphics-9496393-1.png" width="24px" height="16px" align="right">](https://www.aciprensa.com/imagespp/CarlosMenem-dominiopublico-14022021.jpg)

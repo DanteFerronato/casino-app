@@ -1,45 +1,71 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, ipcMain} = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 //const db = require("./DB")
+
+const startWindow = process.env.START?.trim()
+
+console.log("ENV:", startWindow);
 
 const headerHeight = 60
 const tableWidth = 762
 const tableHeight = 300
-const aspectRatioH = tableWidth / (tableHeight+headerHeight)
-const aspectRatioV = tableHeight / (tableWidth+headerHeight)
+const aspectRatioH = tableWidth / (tableHeight + headerHeight)
+const aspectRatioV = tableHeight / (tableWidth + headerHeight)
 var aspectRatio = aspectRatioH
+
+require("./database");
 
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
   hardResetMethod: 'exit'
 });
 
-function createWindow () {
-  const { screen } = require('electron')
-  screenSize = screen.getPrimaryDisplay().size
+function createWindow() {
+  let mainWindow;
 
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: Math.round(tableWidth*1.4),
-    height: Math.round(tableHeight*1.4+headerHeight),
-    minWidth: Math.ceil(tableHeight*0.5+headerHeight),
-    minHeight: Math.ceil(tableWidth*0.5),
-    maxWidth: screenSize.width,
-    maxHeight: screenSize.height,
-    frame: false,
-    transparent: true,
-    fullscreenable: true,
-    webPreferences: {
+  if (startWindow == "LOGIN") {
+    // Create the browser window.
+    mainWindow = new BrowserWindow({
+      frame: false,
+      transparent: true,
+      fullscreenable: true,
+      resizable: false,
+      webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
         devTools: true,
-      //preload: path.join(__dirname, 'preload.js')
-    }
-  })
+        //preload: path.join(__dirname, 'preload.js')
+      }
+    })
 
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+    // and load the index.html of the app.
+    mainWindow.loadFile('login.html')
+  } else if (startWindow == "ROULETTE") {
+    var { screen } = require('electron')
+    var screenSize = screen.getPrimaryDisplay().size
+    // Create the browser window.
+    mainWindow = new BrowserWindow({
+      width: Math.round(tableWidth * 1.4),
+      height: Math.round(tableHeight * 1.4 + headerHeight),
+      minWidth: Math.ceil(tableHeight * 0.5 + headerHeight),
+      minHeight: Math.ceil(tableWidth * 0.5),
+      maxWidth: screenSize.width,
+      maxHeight: screenSize.height,
+      frame: false,
+      transparent: true,
+      fullscreenable: true,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+        devTools: true,
+        //preload: path.join(__dirname, 'preload.js')
+      }
+    })
+
+    // and load the index.html of the app.
+    mainWindow.loadFile('index.html')
+  }
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -47,12 +73,12 @@ function createWindow () {
   ipcMain.on("minimise", () => {
     mainWindow.minimize()
   })
-  
-  function maximiseBtn () {
+
+  function maximiseBtn() {
     if (mainWindow.isMaximized()) {
       mainWindow.unmaximize()
       mainWindow.webContents.send("maximiseBtn")
-      if(mainWindow.getBounds().width > screenSize.width-10){
+      if (startWindow == "ROULETTE" && (mainWindow.getBounds().width > screenSize.width - 10)) {
         aspectRatio = screenSize.width / screenSize.height
       }
     }
@@ -65,21 +91,21 @@ function createWindow () {
   ipcMain.on("maximise", () => {
     maximiseBtn()
   })
-  
+
   ipcMain.on("close", () => {
     mainWindow.close()
   })
 
   mainWindow.on("resize", () => {
-    console.log(mainWindow.getBounds().width,"",mainWindow.isMaximized())
-    if(!mainWindow.isMaximized()){
-      if(mainWindow.getBounds().width < aspectRatioV*screenSize.height) {
+    console.log(mainWindow.getBounds().width, "", mainWindow.isMaximized())
+    if (!mainWindow.isMaximized()) {
+      if (startWindow == "ROULETTE" && (mainWindow.getBounds().width < aspectRatioV * screenSize.height)) {
         mainWindow.y = 0
         aspectRatio = aspectRatioV
       } else {
         aspectRatio = aspectRatioH
       }
-      mainWindow.setAspectRatio(aspectRatio)
+      if (startWindow == "ROULETTE") mainWindow.setAspectRatio(aspectRatio)
     }
   })
 }
