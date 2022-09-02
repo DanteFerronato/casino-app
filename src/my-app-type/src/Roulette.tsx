@@ -8,16 +8,16 @@ function Roulette() {
     return (
         <div id={style["wrapper"]}>
             <TitleBar />
-            <section className={"mt-4"}>
+            <section>
                 <div id={style["main"]}>
-                    <img src="res/MesaCasino.png" alt="Casino table background" />
+                    <img src="img/rouletteCarpet.png" alt="Green roulette table background" />
                     <div id={style["roulette-container"]}>
                         <div>
-                            <img src="res/lowerBorder.svg" id={style["lower-border"]} className={"img-fluid"} />
-                            <img src="res/americanRoulette.svg" id={style["wheel"]} className={"img-fluid"+style["roulette-spinning"]} />
+                            <img src="img/rouletteLowerBorder.svg" id={style["lower-border"]} />
+                            <img src="img/rouletteAmerican.svg" id={style["wheel"]} className={style["roulette-spinning"]} />
                             <RouletteBall />
-                            <img src="res/upperBorder.svg" id={style["upper-border"]} className={"img-fluid"} />
-                            <img src="res/handle.svg" id={style["handle"]} className={"img-fluid "+style["roulette-spinning"]} />
+                            <img src="img/rouletteUpperBorder.svg" id={style["upper-border"]} />
+                            <img src="img/rouletteHandle.svg" id={style["handle"]} className={style["roulette-spinning"]} />
                         </div>
                     </div>
                     <Layout />

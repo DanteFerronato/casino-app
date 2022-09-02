@@ -164,6 +164,18 @@ const gridToPosition = (columns : number[], rows : number[]) => {
     }
     return [listCummulate(columns), listCummulate(rows)]
 }
+const arrayConcatMultiplication = (array : Array<any>, multiplier : number) => {
+    let product : Array<any> = []
+    for (let i = 0; i < multiplier; i++) {
+        product = product.concat(array)
+    }
+    return product
+}
+const positions = gridToPosition(
+    [.8].concat(arrayConcatMultiplication([.4, .6], 12)).concat([.4, .8]),
+    arrayConcatMultiplication([.4, .6], 3).concat([.4, .8, 1])
+)
+
 
 var inputOpen = false
 
