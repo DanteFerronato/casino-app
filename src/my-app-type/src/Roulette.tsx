@@ -6,7 +6,6 @@ import style from "./style/roulette.module.css"
 function Roulette() {
     return (
         <div id={style["wrapper"]}>
-            <TitleBar />
             <section>
                 <div id={style["main"]}>
                     <img src="img/rouletteCarpet.png" alt="Green roulette table background" />
