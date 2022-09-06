@@ -7,7 +7,7 @@ import TitleBar from './TitleBar';
 
 function App() {
     return (
-        <div>
+        <div id="app">
             <TitleBar />
             <BrowserRouter>
                 <Routes>

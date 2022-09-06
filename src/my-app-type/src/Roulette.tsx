@@ -5,23 +5,21 @@ import style from "./style/roulette.module.css"
 
 function Roulette() {
     return (
-        <div id={style["wrapper"]}>
-            <section>
-                <div id={style["main"]}>
-                    <img src="img/rouletteCarpet.png" alt="Green roulette table background" />
-                    <div id={style["roulette-container"]}>
-                        <div>
-                            <img src="img/rouletteLowerBorder.svg" id={style["lower-border"]} />
-                            <img src="img/rouletteAmerican.svg" id={style["wheel"]} className={style["roulette-spinning"]} />
-                            <RouletteBall />
-                            <img src="img/rouletteUpperBorder.svg" id={style["upper-border"]} />
-                            <img src="img/rouletteHandle.svg" id={style["handle"]} className={style["roulette-spinning"]} />
-                        </div>
+        <section>
+            <div id={style["table"]}>
+                <img src="img/rouletteCarpet.png" alt="Green roulette table background" />
+                <div id={style["roulette-container"]}>
+                    <div>
+                        <img src="img/rouletteLowerBorder.svg" id={style["lower-border"]} />
+                        <img src="img/rouletteAmerican.svg" id={style["wheel"]} className={style["roulette-spinning"]} />
+                        <RouletteBall />
+                        <img src="img/rouletteUpperBorder.svg" id={style["upper-border"]} />
+                        <img src="img/rouletteHandle.svg" id={style["handle"]} className={style["roulette-spinning"]} />
                     </div>
-                    <Layout />
                 </div>
-            </section>
-        </div>
+                <Layout />
+            </div>
+        </section>
     )
 }
 
