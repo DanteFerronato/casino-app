@@ -14,12 +14,7 @@ const aspectRatioH = tableWidth / (tableHeight + headerHeight)
 const aspectRatioV = tableHeight / (tableWidth + headerHeight)
 var aspectRatio = aspectRatioH
 
-require("./database");
-
-require('electron-reload')(__dirname, {
-  electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
-  hardResetMethod: 'exit'
-});
+// require("./database");
 
 function createWindow() {
   let mainWindow;
@@ -40,8 +35,8 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    mainWindow.loadFile('login.html')
-  } else if (startWindow == "ROULETTE") {
+    //mainWindow.loadFile('login.html')
+  } else {
     var { screen } = require('electron')
     var screenSize = screen.getPrimaryDisplay().size
     // Create the browser window.
@@ -64,8 +59,9 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    mainWindow.loadFile('index.html')
+    //mainWindow.loadFile('index.html')
   }
+  mainWindow.loadURL("http://localhost:3000");
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

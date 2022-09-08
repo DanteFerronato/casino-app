@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TitleBar from './TitleBar';
 import Layout from './RouletteLayout';
 import style from "./style/roulette.module.css"
 
 export default function Roulette() {
-    const betCycleEvent = () => {
+    const [betsClosed, closeBets] = useState(false)
+    const handleBetsClosed = () => {
 
     }
 
@@ -21,7 +22,7 @@ export default function Roulette() {
                         <img src="img/rouletteHandle.svg" id={style["handle"]} className={style["roulette-spinning"]} />
                     </div>
                 </div>
-                <Layout betCycleEvent={betCycleEvent}/>
+                <Layout betsClosed={betsClosed} />
             </div>
         </section>
     )
