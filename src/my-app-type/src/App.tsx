@@ -5,7 +5,7 @@ import Login from './Login';
 import Roulette from './Roulette';
 import TitleBar from './TitleBar';
 
-function App() {
+export default function App() {
     return (
         <div id="app">
             <TitleBar />
@@ -19,5 +19,3 @@ function App() {
         </div>
     )
 }
-
-export default App;

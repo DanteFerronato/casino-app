@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "./style/title-bar.module.css"
 
-function TitleBar() {
+export default function TitleBar() {
     return (
         <header>
             <div id={style["balance-container"]}>
@@ -31,5 +31,3 @@ function TitleBar() {
         </header>
     )
 }
-
-export default TitleBar

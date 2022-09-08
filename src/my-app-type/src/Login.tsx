@@ -3,7 +3,7 @@ import TitleBar from './TitleBar';
 import style from "./style/login.module.css"
 import waves from "./style/waves.module.css"
 
-function Login() {
+export default function Login() {
     return (
         <div className="main">
             <div className="container a-container" id="a-container">
@@ -47,5 +47,3 @@ function Login() {
         </div>
     )
 }
-
-export default Login;

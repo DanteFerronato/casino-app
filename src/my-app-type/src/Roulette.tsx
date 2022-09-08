@@ -3,7 +3,7 @@ import TitleBar from './TitleBar';
 import Layout from './RouletteLayout';
 import style from "./style/roulette.module.css"
 
-function Roulette() {
+export default function Roulette() {
     return (
         <section>
             <div id={style["table"]}>
@@ -32,5 +32,3 @@ function RouletteBall() {
         </div>
     )
 }
-
-export default Roulette;

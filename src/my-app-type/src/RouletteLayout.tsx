@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { JsxElement } from 'typescript';
 import style from "./style/roulette.module.css"
 
-function Layout() {
-    let carpetNums : Array<JSX.Element> = []
-    let betgridNums : Array<JSX.Element> = []
+export default function Layout() {
+    const [inputLocation, setInputLocation] = useState(["0", "0"])
+    const [indicatorLocation, setIndicatorLocation] = useState(["0", "0"])
+    
+    const handleRelocate = (position : string[]) => {
+        setInputLocation(position)
+    }
+
+    let carpetNums : JSX.Element[] = []
+    let betgridNums : JSX.Element[] = []
     for (let i = 1; i <= 36; i++) {
         carpetNums.push(<LayoutCell n={i} name={null} />)
-        betgridNums.push(<BetgridCell type={'single'} n={[i]} name={null} />)
+        betgridNums.push(<BetgridCell type={'single'} n={[i]} name={null} inputRelocate={handleRelocate} />)
         if (i%3 != 0) {
-            betgridNums.push(<BetgridCell type={'double'} n={[i, i+1]} name={null} />)
-            if (i<34) betgridNums.push(<BetgridCell type={'quad'} n={[i, i+1, i+3, i+4]} name={null} />)
+            betgridNums.push(<BetgridCell type={'double'} n={[i, i+1]} name={null} inputRelocate={handleRelocate} />)
+            if (i<34) betgridNums.push(<BetgridCell type={'quad'} n={[i, i+1, i+3, i+4]} name={null} inputRelocate={handleRelocate} />)
         }
-        if (i<34) betgridNums.push(<BetgridCell type={'double'} n={[i, i+3]} name={null} />)
+        if (i<34) betgridNums.push(<BetgridCell type={'double'} n={[i, i+3]} name={null} inputRelocate={handleRelocate} />)
     }
 
     return (
@@ -48,48 +55,39 @@ function Layout() {
                 <div id={style["betgrid-dz-2"]}></div>
                 <div id={style["betgrid-dz-3"]}></div>
             </div>
-            <BetInput />
+            <BetInput location={inputLocation}/>
             <ChipIndicator />
         </div>
     )
 }
 
-var inputLocation = ""
-var indicatorLocation = ""
-
-function Chip(params : {
-    name : string,
-    inner : JSX.Element | JSX.Element[]
+export function BetInput(params : {
+    location : string[]
 }) {
-    return (
-        <div className={style["chip"]} id={style[params.name]}>{params.inner}</div>
-    )
-}
 
-function BetInput() {
     return (
-        <Chip name="bet-input" inner={[
-                <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="7" cy="7" r="5.5" stroke="none" fill="#ddd"/>
-                    <circle cx="7" cy="7" r="2" stroke="gold" fill="none"/>
-                    <circle cx="7" cy="7" r="5" stroke="gold" strokeWidth="1" strokeDasharray="3 2" fill="none"/>
-                </svg>,
-                <input type="number" min="0" max="999" />
-        ]} />
-    )
-}
-
-function ChipIndicator() {
-    return (
-        <Chip name="chip-indicator" inner={
+        <div className={style["chip"]} id="bet-input" style={{"top": params.location[0], "left": params.location[1]}}>
             <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1" strokeDasharray="3 1" fill="none"/>
-        </svg>
-        } />
+                <circle cx="7" cy="7" r="5.5" stroke="none" fill="#ddd"/>
+                <circle cx="7" cy="7" r="2" stroke="gold" fill="none"/>
+                <circle cx="7" cy="7" r="5" stroke="gold" strokeWidth="1" strokeDasharray="3 2" fill="none"/>
+            </svg>
+            <input type="number" min="0" max="999" />
+        </div>
     )
 }
 
-function numberPosition(n : number, ) {
+export function ChipIndicator() {
+    return (
+        <div className={style["chip"]} id="chip-indicator">
+            <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1" strokeDasharray="3 1" fill="none"/>
+            </svg>
+        </div>
+    )
+}
+
+const numberPosition = (n : number, ) => {
     return {
         column: Math.floor((n-1)/3)+2,
         row: (n-1)%3
@@ -116,8 +114,9 @@ function LayoutCell (params : {
 
 function BetgridCell(params : {
     type : string, // One of either single, double, quad or special
-    n : Array<number> | null,
+    n : number[] | null,
     name : string | null,
+    inputRelocate : (position : string[]) => void
 }) {
     let single = params.type == "single"
     let double = params.type == "double"
@@ -140,12 +139,13 @@ function BetgridCell(params : {
     return (
         <div id={"betgrid-"+name} style={!special? {"gridArea" : 7-row! + " / " + column!}:{}} onClick={e=>{
             console.log("click ", name)
-            inputLocation = name
+            params.inputRelocate([positions[0][column], positions[1][row]])
         }} onMouseOver={e=>{
-            indicatorLocation = name
+            //params.inputRelocate([positions[0][column], positions[1][row]])
         }} />
     )
 }
+
 const gridToPosition = (columns : number[], rows : number[]) => {
     let listCummulate = (list : number[]) => {
         let sum = 0
@@ -157,7 +157,7 @@ const gridToPosition = (columns : number[], rows : number[]) => {
             };
         }
         let newList = sumList.map(e => {
-            100*e/sum+"%"
+            return 100*e/sum+"%"
         });
         return newList
     }
@@ -175,10 +175,7 @@ const positions = gridToPosition(
     arrayConcatMultiplication([.4, .6], 3).concat([.4, .8, 1])
 )
 
-
 var inputOpen = false
 
 const chipValues = [1, 2.5, 5, 10, 25, 100]
 const chipColours = ["#aaa", "#f9b", "#c22", "#22e", "#282", "#222"]
-
-export default Layout
