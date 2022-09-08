@@ -1,13 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { JsxElement } from 'typescript';
 import style from "./style/roulette.module.css"
+import chips from "./style/chips.module.css"
 
-export default function Layout() {
+export default function Layout(params : {
+    betCycleEvent : () => void,
+}) {
     const [inputLocation, setInputLocation] = useState(["0", "0"])
     const [indicatorLocation, setIndicatorLocation] = useState(["0", "0"])
     
-    const handleRelocate = (position : string[]) => {
-        setInputLocation(position)
+    const handleRelocate = (position : string[], id : string) => {
+        switch (id) {
+            case "bet-input": setInputLocation(position)
+                break;
+            case "chip-indicator": setIndicatorLocation(position)
+                break;
+        }
     }
 
     let carpetNums : JSX.Element[] = []
@@ -56,20 +64,19 @@ export default function Layout() {
                 <div id={style["betgrid-dz-3"]}></div>
             </div>
             <BetInput location={inputLocation}/>
-            <ChipIndicator />
+            <ChipIndicator location={indicatorLocation}/>
         </div>
     )
 }
 
 export function BetInput(params : {
-    location : string[]
+    location : string[],
 }) {
-
     return (
-        <div className={style["chip"]} id="bet-input" style={{"top": params.location[0], "left": params.location[1]}}>
+        <div className={chips["chip"]} id={chips["bet-input"]} style={{"left": params.location[0], "top": params.location[1]}}>
             <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="7" cy="7" r="5.5" stroke="none" fill="#ddd"/>
-                <circle cx="7" cy="7" r="2" stroke="gold" fill="none"/>
+                {/* <circle cx="7" cy="7" r="2" stroke="gold" fill="none"/> */}
                 <circle cx="7" cy="7" r="5" stroke="gold" strokeWidth="1" strokeDasharray="3 2" fill="none"/>
             </svg>
             <input type="number" min="0" max="999" />
@@ -77,9 +84,11 @@ export function BetInput(params : {
     )
 }
 
-export function ChipIndicator() {
+export function ChipIndicator(params : {
+    location : string[]
+}) {
     return (
-        <div className={style["chip"]} id="chip-indicator">
+        <div className={chips["chip"]} id={chips["chip-indicator"]} style={{"left": params.location[0], "top": params.location[1]}}>
             <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1" strokeDasharray="3 1" fill="none"/>
             </svg>
@@ -116,7 +125,7 @@ function BetgridCell(params : {
     type : string, // One of either single, double, quad or special
     n : number[] | null,
     name : string | null,
-    inputRelocate : (position : string[]) => void
+    inputRelocate : (position : string[], id : string) => void,
 }) {
     let single = params.type == "single"
     let double = params.type == "double"
@@ -138,10 +147,10 @@ function BetgridCell(params : {
 
     return (
         <div id={"betgrid-"+name} style={!special? {"gridArea" : 7-row! + " / " + column!}:{}} onClick={e=>{
-            console.log("click ", name)
-            params.inputRelocate([positions[0][column], positions[1][row]])
+            console.log("click ", name, column, row)
+            params.inputRelocate([positions[0][column-1], positions[1][6-row]], "bet-input")
         }} onMouseOver={e=>{
-            //params.inputRelocate([positions[0][column], positions[1][row]])
+            params.inputRelocate([positions[0][column-1], positions[1][6-row]], "chip-indicator")
         }} />
     )
 }

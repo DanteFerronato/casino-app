@@ -4,6 +4,10 @@ import Layout from './RouletteLayout';
 import style from "./style/roulette.module.css"
 
 export default function Roulette() {
+    const betCycleEvent = () => {
+
+    }
+
     return (
         <section>
             <div id={style["table"]}>
@@ -17,7 +21,7 @@ export default function Roulette() {
                         <img src="img/rouletteHandle.svg" id={style["handle"]} className={style["roulette-spinning"]} />
                     </div>
                 </div>
-                <Layout />
+                <Layout betCycleEvent={betCycleEvent}/>
             </div>
         </section>
     )

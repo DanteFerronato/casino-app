@@ -177,28 +177,6 @@ section {
 	}
 }
 
-.chip {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: block;
-}
-
-.chip>svg {
-	width: 4vw;
-	height: 4vw;
-}
-
-#bet-input input {
-	width: 3.5vw;
-	height: 3vw;
-}
-
-#chip-indicator, #chip-indicator * {
-	z-index: 11;
-	overflow: visible;
-}
-
 /* For dev purposes */
 #roulette-ball {
     border: 1px dashed grey;

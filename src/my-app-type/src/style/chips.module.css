@@ -1,0 +1,29 @@
+.chip {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+    pointer-events: none;
+}
+
+.chip>svg {
+	width: 4vw;
+	height: 4vw;
+}
+
+#bet-input input {
+	width: 3.5vw;
+	height: 3vw;
+    pointer-events: initial;
+}
+
+#chip-indicator, #chip-indicator * {
+	z-index: 11;
+	overflow: visible;
+}
+
+.bet-particle {
+    font-size: large;
+    font-weight: bolder;
+    color: orange;
+}
