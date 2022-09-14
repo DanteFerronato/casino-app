@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import TitleBar from './TitleBar';
 import Layout from './RouletteLayout';
 import style from "./style/roulette.module.css"
@@ -6,11 +6,25 @@ import style from "./style/roulette.module.css"
 export default function Roulette() {
     const [betsClosed, closeBets] = useState(false)
     const handleBetsClosed = () => {
-
+        if (betsClosed) setTimeout(() => {
+            closeBets(false)
+            console.log("bets on")
+        }, 1500)
     }
 
+    const ref = useRef<HTMLDivElement>()
+    useEffect (() => {
+        if (!betsClosed) setTimeout(() => {
+            closeBets(true)
+            ref.current?.classList.toggle("bet-particle-animate")
+            ref.current?.classList.toggle("bet-particle-animate")
+            console.log("bets off")
+        }, 3000)
+    }, [betsClosed]
+    )
+
     return (
-        <section>
+        <section className={style["bet-particle-animate"]}>
             <div id={style["table"]}>
                 <img src="img/rouletteCarpet.png" alt="Green roulette table background" />
                 <div id={style["roulette-container"]}>
@@ -22,7 +36,7 @@ export default function Roulette() {
                         <img src="img/rouletteHandle.svg" id={style["handle"]} className={style["roulette-spinning"]} />
                     </div>
                 </div>
-                <Layout betsClosed={betsClosed} />
+                <Layout betsClosed={betsClosed} handleBetsClosed={handleBetsClosed} />
             </div>
         </section>
     )

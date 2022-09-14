@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import style from "./style/chips.module.css"
 
 export function BetInput(params : {
@@ -31,7 +31,14 @@ export function ChipIndicator(params : {
 export function BetParticle(params : {
     location : string[],
     multiplier : number,
+    betsClosed : boolean,
 }) {
+    // const ref = useRef<HTMLElement>().current
+    useEffect (() => {
+        // ref!.classList.toggle(style[".bet-particle-animate"])
+    }, [params.betsClosed]
+    )
+
     return (
         <p className={style["bet-particle"]} style={{"left": params.location[0], "top": params.location[1]}}>{"x"+params.multiplier}</p>
     )

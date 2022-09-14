@@ -1,3 +1,4 @@
+import { Paper } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { JsxElement } from 'typescript';
 import { BetInput, BetParticle, ChipIndicator } from './BetChips';
@@ -5,10 +6,10 @@ import style from "./style/roulette.module.css"
 
 export default function Layout(params : {
     betsClosed : boolean,
+    handleBetsClosed : () => void,
 }) {
     const [inputLocation, setInputLocation] = useState(["0", "0"])
     const [indicatorLocation, setIndicatorLocation] = useState(["0", "0"])
-    const [particleLocation, setParticleLocation] = useState(["0", "0"])
     const [betParticleM, setParticleM] = useState(1)
     
     const handleRelocate = (position : string[], id : string) => {
@@ -17,6 +18,8 @@ export default function Layout(params : {
                 break;
             case "chip-indicator": setIndicatorLocation(position)
                 break;
+            // case "bet-particle": setParticleLocation(position)
+                // break;
         }
     }
 
@@ -32,6 +35,11 @@ export default function Layout(params : {
         if (i<34) betgridNums.push(<BetgridCell type={'double'} n={[i, i+3]} name={null} inputRelocate={handleRelocate} />)
     }
 
+    useEffect (() => {
+        params.handleBetsClosed()
+    }, [params.betsClosed]
+    )
+    
     return (
         <div id={style["layout-container"]}>
             <div id={style["layout"]}>
@@ -67,7 +75,7 @@ export default function Layout(params : {
             </div>
             <BetInput location={inputLocation} />
             <ChipIndicator location={indicatorLocation} />
-            <BetParticle location={indicatorLocation} multiplier={betParticleM} />
+            <BetParticle location={inputLocation} multiplier={betParticleM} betsClosed={params.betsClosed} />
         </div>
     )
 }
