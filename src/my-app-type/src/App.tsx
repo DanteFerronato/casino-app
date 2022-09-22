@@ -2,7 +2,7 @@ import React from 'react';
 import Login from './Login';
 import Roulette from './Roulette';
 
-var window = "roulette"
+var window = "login"
 
 function App() {
     let body = <></>

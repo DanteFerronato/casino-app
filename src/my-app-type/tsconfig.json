@@ -22,6 +22,6 @@
   },
   "include": [
     "src",
-    "public/Functions"
+    "public/Functions",
   ]
 }
