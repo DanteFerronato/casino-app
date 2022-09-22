@@ -2,34 +2,23 @@
 	overflow-y:hidden;
 }
 
-body, #wrapper, section {
-	background-color: #0000 !important;
-}
-
-#wrapper {
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
 section {
 	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+#table {
+	position: relative;
+	width: 100%;
 	aspect-ratio: 762 / 300;
 }
 
-#main {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-#main>* {
+#table>* {
 	position: absolute;
 }
 
-#main>img {
+#table>img {
 	width: 100%;
 	height: 100%;
 }
@@ -154,7 +143,7 @@ section {
 }
 
 /* For dev purposes */
-#bet-layout>*:not(#bet-input, #chip-indicator) {
+#bet-layout>*:not(.chip) {
     border: 1px dashed grey;
 }
 
@@ -186,25 +175,6 @@ section {
 	to {
 		transform: rotate(-2turn)
 	}
-}
-
-#bet-input, #chip-indicator {
-	position: absolute;
-}
-
-#bet-input, #chip-indicator>svg {
-	width: 4vw;
-	height: 4vw;
-}
-
-#bet-input input {
-	width: 3.5vw;
-	height: 3vw;
-}
-
-#chip-indicator, #chip-indicator * {
-	z-index: 11;
-	overflow: visible;
 }
 
 /* For dev purposes */

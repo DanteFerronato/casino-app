@@ -1,0 +1,49 @@
+.chip, .bet-particle {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+    pointer-events: none;
+}
+
+.chip>svg {
+	width: 4vw;
+	height: 4vw;
+}
+
+#bet-input input {
+	width: 3.5vw;
+	height: 3vw;
+    pointer-events: initial;
+}
+
+#chip-indicator, #chip-indicator * {
+	z-index: 11;
+	overflow: visible;
+}
+
+.bet-particle {
+    font-size: large;
+    font-weight: bolder;
+    color: orange;
+}
+
+.bet-particle-animate .bet-particle {
+	animation: particle-appear 1s linear 1;
+}
+
+@keyframes particle-appear {
+	0% {
+		opacity: 0%;
+	}
+	20% {
+		opacity: 100%;
+	}
+	50% {
+		opacity: 100%;
+	}
+	100% {
+		opacity: 0%;
+		transform: translateY(-20%);
+	}
+}

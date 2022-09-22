@@ -7,6 +7,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#app>* {
+  flex: 1;
+}
+
+body, section {
+	background-color: #0000 !important;
+}
+
+section {
+	width: 100vw;
+	height: 100vh;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

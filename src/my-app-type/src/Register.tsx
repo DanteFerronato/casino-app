@@ -170,6 +170,41 @@ export default function SignIn() {
                   id="password"
                   autoComplete="current-password"
                 />
+                 <TextField
+                   sx={{
+                     "& label.Mui-focused": {
+                       color: "white",
+                     },
+                     "& .MuiInput-underline:after": {
+                       borderBottomColor: "black",
+                     },
+                     "& .MuiInput-underline:before": {
+                       borderBottomColor: "white",
+                     },
+                     // "& .MuiInput-underline:hover:after": {
+                     //   borderBottomColor: "red",
+                     // },
+                     "& .MuiInput-underline:hover:before": {
+                       borderBottom: "3px solid #fafafade !important",
+                     },
+                     "& .MuiInputLabel-standard": {
+                       color: "white",
+                     },
+                     "& .MuiInputBase-input": {
+                       color: "white",
+                     },
+                   }}
+                  variant="standard"
+                  color="primary"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="confirmPassword"
+                  type="confirmPassword"
+                  id="confirmPassword"
+                  autoComplete="current-password"
+                />
                 <FormControlLabel
                 sx={{
                   color: "gainsboro",
