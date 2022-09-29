@@ -1,5 +1,5 @@
 import { Paper } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { JsxElement } from 'typescript';
 import { BetInput, BetParticle, ChipIndicator } from './BetChips';
 import style from "./style/roulette.module.css"
@@ -27,12 +27,20 @@ export default function Layout(params : {
     let betgridNums : JSX.Element[] = []
     for (let i = 1; i <= 36; i++) {
         carpetNums.push(<LayoutCell n={i} name={null} />)
-        betgridNums.push(<BetgridCell type={'single'} n={[i]} name={null} inputRelocate={handleRelocate} />)
+        betgridNums.push(<BetgridCell
+            type={'single'} n={[i]} name={null}
+            inputRelocate={handleRelocate} />)
         if (i%3 != 0) {
-            betgridNums.push(<BetgridCell type={'double'} n={[i, i+1]} name={null} inputRelocate={handleRelocate} />)
-            if (i<34) betgridNums.push(<BetgridCell type={'quad'} n={[i, i+1, i+3, i+4]} name={null} inputRelocate={handleRelocate} />)
+            betgridNums.push(<BetgridCell
+                type={'double'} n={[i, i + 1]} name={null}
+                inputRelocate={handleRelocate} />)
+            if (i<34) betgridNums.push(<BetgridCell
+                type={'quad'} n={[i, i+1, i+3, i+4]} name={null}
+                inputRelocate={handleRelocate} />)
         }
-        if (i<34) betgridNums.push(<BetgridCell type={'double'} n={[i, i+3]} name={null} inputRelocate={handleRelocate} />)
+        if (i<34) betgridNums.push(<BetgridCell
+            type={'double'} n={[i, i+3]} name={null}
+            inputRelocate={handleRelocate} />)
     }
 
     useEffect (() => {
@@ -93,12 +101,12 @@ function LayoutCell (params : {
     n : number | null,
     name : string | null,
 }) {
-    let special = typeof(params.n) == null
-    let n = special? 0 : params.n!
-    let name = special? params.name! : n!+""
-    let pos = numberPosition(n)
-    let rouletteOrderN = french? frenchNums.indexOf(n+"") : americanNums.indexOf(n+"")
-    let black = (rouletteOrderN % 2 == 1) != french
+    const special = typeof(params.n) == null
+    const n = special? 0 : params.n!
+    const name = special? params.name! : n!+""
+    const pos = numberPosition(n)
+    const rouletteOrderN = french? frenchNums.indexOf(n+"") : americanNums.indexOf(n+"")
+    const black = (rouletteOrderN % 2 == 1) != french
     
     return (
         <div className={style[special? "green-cell":black? "black-cell":"scarlet-cell"]} id={"carpet-"+name} style={!special? {"gridArea" : 3-pos.row + " / " + pos.column}:{}}><p>{n}</p></div>
@@ -111,9 +119,9 @@ function BetgridCell(params : {
     name : string | null,
     inputRelocate : (position : string[], id : string) => void,
 }) {
-    let single = params.type == "single"
-    let double = params.type == "double"
-    let special = params.type == "special"
+    const single = params.type == "single"
+    const double = params.type == "double"
+    const special = params.type == "special"
     let column : number
     let row : number
 
@@ -127,14 +135,18 @@ function BetgridCell(params : {
             (n[1]-n[0]==1)? pos[0].row*2+2 : pos[0].row*2+1
             :single? pos[0].row*2+1 : pos[0].row*2+2
     }
-    let name = special? params.name! : params.type+"-"+params.n?.join("-")
+    const name = special? params.name! : params.type+"-"+params.n?.join("-")
 
     return (
-        <div id={"betgrid-"+name} style={!special? {"gridArea" : 7-row! + " / " + column!}:{}} onClick={e=>{
+        <div id={"betgrid-"+name} style={{
+            "gridArea" : !special? 7-row! + " / " + column! : "none",
+            "visibility" : "visible"
+        }}
+        onClick={e=>{
             console.log("click ", name, column, row)
-            params.inputRelocate([positions[0][column-1], positions[1][6-row]], "bet-input")
+            params.inputRelocate(centreredPosition(column, row), "bet-input")
         }} onMouseOver={e=>{
-            params.inputRelocate([positions[0][column-1], positions[1][6-row]], "chip-indicator")
+            params.inputRelocate(centreredPosition(column, row), "chip-indicator")
         }} />
     )
 }
@@ -167,6 +179,12 @@ const positions = gridToPosition(
     [.8].concat(arrayConcatMultiplication([.4, .6], 12)).concat([.4, .8]),
     arrayConcatMultiplication([.4, .6], 3).concat([.4, .8, 1])
 )
+const centreredPosition = (column : number, row : number) => {
+    let left = (Number.parseFloat(positions[0][column-2].replace("%", "")) + Number.parseFloat(positions[0][column-1].replace("%","")))/2 + "%"
+    let top = (Number.parseFloat(positions[1][5-row].replace("%", "")) + Number.parseFloat(positions[1][6-row].replace("%", "")))/2 + "%"
+    console.log(positions[0][column-2], left, positions[1][5-row], top)
+    return [left, top]
+}
 
 var inputOpen = false
 

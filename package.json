@@ -2,10 +2,10 @@
   "name": "casino-app",
   "main": "main.ts",
   "scripts": {
-    "start": "cd react && npm start",
+    "start": "concurrently \"cd react && cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && nodemon --exec electron .\"",
+    "web-start": "cd react && npm start",
     "login": "set START=LOGIN && electron .",
     "roulette": "set START=ROULETTE && electron .",
-    "electron-dev": "concurrently \"cd react && cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && nodemon --exec electron .\"",
     "build": "tsc"
   },
   "devDependencies": {
@@ -16,7 +16,6 @@
     "bootstrap": "^5.2.0-beta1",
     "concurrently": "^7.4.0",
     "cross-env": "^7.0.3",
-    "electron-reload": "^2.0.0-alpha.1",
     "mongoose": "^6.4.1",
     "nodemon": "^2.0.19",
     "wait-on": "^6.0.1"
