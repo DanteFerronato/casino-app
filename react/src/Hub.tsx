@@ -13,6 +13,11 @@ export default function Hub() {
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
+                    <ListItemButton href="/register">
+                        <ListItemText primary="Register" />
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
                     <ListItemButton href="/roulette">
                         <ListItemText primary="Roulette" />
                     </ListItemButton>
