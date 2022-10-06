@@ -41,6 +41,7 @@ function createWindow() {
     var screenSize = screen.getPrimaryDisplay().size
     // Create the browser window.
     mainWindow = new BrowserWindow({
+      fullscreen: true,
       width: Math.round(tableWidth * 1.4),
       height: Math.round(tableHeight * 1.4 + headerHeight),
       minWidth: Math.ceil(tableHeight * 0.5 + headerHeight),

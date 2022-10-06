@@ -46,7 +46,7 @@ function Copyright(props: any) {
   );
 }
 
-export default function Login() {
+export default function Register() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -71,7 +71,7 @@ export default function Login() {
         elevation={20}
         sx={{
           width: 500,
-          height: 600,
+          height: 670,
           margin: "auto",
           bgcolor: "#000000c9",
         }}
@@ -94,7 +94,7 @@ export default function Login() {
                 color: "white"
               }}
               component="h1" variant="h5">
-                Sign in
+                Register
               </Typography>
               <Box
                 component="form"
@@ -174,6 +174,41 @@ export default function Login() {
                   id="password"
                   autoComplete="current-password"
                 />
+                <TextField
+                   sx={{
+                     "& label.Mui-focused": {
+                       color: "white",
+                     },
+                     "& .MuiInput-underline:after": {
+                       borderBottomColor: "black",
+                     },
+                     "& .MuiInput-underline:before": {
+                       borderBottomColor: "white",
+                     },
+                     // "& .MuiInput-underline:hover:after": {
+                     //   borderBottomColor: "red",
+                     // },
+                     "& .MuiInput-underline:hover:before": {
+                       borderBottom: "3px solid #fafafade !important",
+                     },
+                     "& .MuiInputLabel-standard": {
+                       color: "white",
+                     },
+                     "& .MuiInputBase-input": {
+                       color: "white",
+                     },
+                   }}
+                  variant="standard"
+                  color="primary"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="confirm-password"
+                  label="Confirm password"
+                  type="password"
+                  id="confirm-password"
+                  autoComplete="current-password"
+                />
                 <FormControlLabel
                 sx={{
                   color: "gainsboro",
@@ -206,15 +241,16 @@ export default function Login() {
                 </Button>
                 <Grid container>
                   <Grid item xs>
+                 
                   </Grid>
                   <Grid item>
                     <Link
                       sx={{
                         color: "gainsboro",
                       }}
-                      href="./Register"
+                      href="./Login"
                       variant="body2">
-                      {"Don't have an account? Register"}
+                      {"Already have an account? Log in"}
                     </Link>
                   </Grid>
                 </Grid>
