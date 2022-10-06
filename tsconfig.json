@@ -106,6 +106,6 @@
   },
   "include": [
     "src",
-    "DB"
+    "database"
   ]
 }

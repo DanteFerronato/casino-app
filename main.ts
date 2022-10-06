@@ -1,13 +1,11 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-//const db = require("./DB")
+const db = require("./database")
 
 const headerHeight = 60
 const tableWidth = 762
 const tableHeight = 300
-
-// require("./database");
 
 function createWindow() {
   let mainWindow;
@@ -32,8 +30,7 @@ function createWindow() {
     }
   })
 
-  // and load the index.html of the app.
-  //mainWindow.loadFile('index.html')
+  // Load the react development server
   mainWindow.loadURL("http://localhost:3000");
 
   // Open the DevTools.
@@ -58,6 +55,10 @@ function createWindow() {
     mainWindow.close()
   })
 
+  ipcMain.on("", () => {
+    
+  })
+
   mainWindow.on("resize", () => {
     console.log(mainWindow.getBounds().width, "", mainWindow.isMaximized())
   })
@@ -65,6 +66,7 @@ function createWindow() {
   mainWindow.on("blur", () => {
     mainWindow.webContents.send("blur")
   })
+
   mainWindow.on("focus", () => {
     mainWindow.webContents.send("focus")
   })

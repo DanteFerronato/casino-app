@@ -1,7 +1,7 @@
 # Database Structure
 
 + Users: Lists all users who signed up, including the house itself
-    + username: Uniquelly identifies the user
+    + username: Uniquely identifies the user
     + email: Employed on sign in, is unique
     + password: Employed on sign in
     + money: Total money purchased by the user in the casino casino, including losses
@@ -9,13 +9,13 @@
     + isAdmin: Whether the user is the house or not
 
 + PurchaseLog: Lists all purchases by all users
-    + id: Uniquelly id's purchase
+    + id: Uniquely id's purchase
     + username: Identifies user
     + amount: (of money, purchased)
     + time: Date and time of purchase
 
 + Bets: Lists all current and past bets made in all games
-    + id: Uniquelly id's bet
+    + id: Uniquely id's bet
     + username: Identifies user
     + amount: (of money, betted)
     + game: In which game is it betted (currently can only be roulette)
