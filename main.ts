@@ -3,65 +3,37 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 //const db = require("./DB")
 
-const startWindow = process.env.START?.trim()
-
-console.log("ENV:", startWindow);
-
 const headerHeight = 60
 const tableWidth = 762
 const tableHeight = 300
-const aspectRatioH = tableWidth / (tableHeight + headerHeight)
-const aspectRatioV = tableHeight / (tableWidth + headerHeight)
-var aspectRatio = aspectRatioH
 
 // require("./database");
 
 function createWindow() {
   let mainWindow;
 
-  if (startWindow == "LOGIN") {
-    // Create the browser window.
-    mainWindow = new BrowserWindow({
-      frame: false,
-      transparent: true,
-      fullscreenable: true,
-      resizable: false,
-      webPreferences: {
-        nodeIntegration: true,
-        contextIsolation: false,
-        devTools: true,
-        //preload: path.join(__dirname, 'preload.js')
-      }
-    })
+  var { screen } = require('electron')
+  var screenSize = screen.getPrimaryDisplay().size
+  // Create the browser window.
+  mainWindow = new BrowserWindow({
+    fullscreen: true,
+    minWidth: Math.ceil(tableHeight * 0.5 + headerHeight),
+    minHeight: Math.ceil(tableWidth * 0.5),
+    maxWidth: screenSize.width,
+    maxHeight: screenSize.height,
+    frame: false,
+    transparent: true,
+    fullscreenable: true,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      devTools: true,
+      //preload: path.join(__dirname, 'preload.js')
+    }
+  })
 
-    // and load the index.html of the app.
-    //mainWindow.loadFile('login.html')
-  } else {
-    var { screen } = require('electron')
-    var screenSize = screen.getPrimaryDisplay().size
-    // Create the browser window.
-    mainWindow = new BrowserWindow({
-      fullscreen: true,
-      width: Math.round(tableWidth * 1.4),
-      height: Math.round(tableHeight * 1.4 + headerHeight),
-      minWidth: Math.ceil(tableHeight * 0.5 + headerHeight),
-      minHeight: Math.ceil(tableWidth * 0.5),
-      maxWidth: screenSize.width,
-      maxHeight: screenSize.height,
-      frame: false,
-      transparent: true,
-      fullscreenable: true,
-      webPreferences: {
-        nodeIntegration: true,
-        contextIsolation: false,
-        devTools: true,
-        //preload: path.join(__dirname, 'preload.js')
-      }
-    })
-
-    // and load the index.html of the app.
-    //mainWindow.loadFile('index.html')
-  }
+  // and load the index.html of the app.
+  //mainWindow.loadFile('index.html')
   mainWindow.loadURL("http://localhost:3000");
 
   // Open the DevTools.
@@ -71,22 +43,15 @@ function createWindow() {
     mainWindow.minimize()
   })
 
-  function maximiseBtn() {
+  ipcMain.on("maximise", () => {
     if (mainWindow.isMaximized()) {
       mainWindow.unmaximize()
       mainWindow.webContents.send("maximiseBtn")
-      if (startWindow == "ROULETTE" && (mainWindow.getBounds().width > screenSize.width - 10)) {
-        aspectRatio = screenSize.width / screenSize.height
-      }
     }
     else {
       mainWindow.maximize()
       mainWindow.webContents.send("unmaximiseBtn")
     }
-  }
-
-  ipcMain.on("maximise", () => {
-    maximiseBtn()
   })
 
   ipcMain.on("close", () => {
@@ -95,15 +60,13 @@ function createWindow() {
 
   mainWindow.on("resize", () => {
     console.log(mainWindow.getBounds().width, "", mainWindow.isMaximized())
-    if (!mainWindow.isMaximized()) {
-      if (startWindow == "ROULETTE" && (mainWindow.getBounds().width < aspectRatioV * screenSize.height)) {
-        mainWindow.y = 0
-        aspectRatio = aspectRatioV
-      } else {
-        aspectRatio = aspectRatioH
-      }
-      if (startWindow == "ROULETTE") mainWindow.setAspectRatio(aspectRatio)
-    }
+  })
+
+  mainWindow.on("blur", () => {
+    mainWindow.webContents.send("blur")
+  })
+  mainWindow.on("focus", () => {
+    mainWindow.webContents.send("focus")
   })
 }
 

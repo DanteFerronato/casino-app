@@ -26,6 +26,13 @@ section {
 	height: 100vh;
 }
 
+#blur-shade {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: #0008;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
