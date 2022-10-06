@@ -81,7 +81,7 @@ export default function Layout(params : {
                 <div id={style["betgrid-dz-2"]}></div>
                 <div id={style["betgrid-dz-3"]}></div>
             </div>
-            <BetInput location={inputLocation} />
+            <BetInput location={inputLocation} betsClosed={params.betsClosed} />
             <ChipIndicator location={indicatorLocation} />
             <BetParticle location={inputLocation} multiplier={betParticleM} betsClosed={params.betsClosed} />
         </div>
@@ -182,7 +182,6 @@ const positions = gridToPosition(
 const centreredPosition = (column : number, row : number) => {
     let left = (Number.parseFloat(positions[0][column-2].replace("%", "")) + Number.parseFloat(positions[0][column-1].replace("%","")))/2 + "%"
     let top = (Number.parseFloat(positions[1][5-row].replace("%", "")) + Number.parseFloat(positions[1][6-row].replace("%", "")))/2 + "%"
-    console.log(positions[0][column-2], left, positions[1][5-row], top)
     return [left, top]
 }
 

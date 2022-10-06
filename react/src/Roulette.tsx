@@ -4,11 +4,18 @@ import Layout from './RouletteLayout';
 import style from "./style/roulette.module.css"
 
 export default function Roulette() {
+    const [result, setResult] = useState("0")
+    const resultGen = () => {
+        let raw = Math.floor(Math.random()*38)
+        return (raw!=37)? raw+"" : "00"
+    }
+
     const [betsClosed, closeBets] = useState(false)
     const handleBetsClosed = () => {
         if (betsClosed) setTimeout(() => {
             closeBets(false)
             console.log("bets on")
+            setResult(resultGen())
         }, 1500)
     }
 
@@ -26,6 +33,7 @@ export default function Roulette() {
     return (
         <section className={style["bet-particle-animate"]}>
             <div id={style["table"]}>
+                <p id={style["result-display"]}>{result}</p>
                 <img src="img/rouletteCarpet.png" alt="Green roulette table background" />
                 <div id={style["roulette-container"]}>
                     <div>

@@ -5,7 +5,6 @@
 	z-index: 11;
 	display: block;
 	transform: translate(0, -0.5vw);
-    pointer-events: none;
 }
 
 .chip {
@@ -18,31 +17,43 @@
 	height: inherit;
 }
 
-#bet-input input {
+.bet-input button {
 	position: absolute;
-	left: 1vw;
-	top: 1.4vw;
 	z-index: 999;
 	width: 2vw;
 	height: 1.2vw;
 	border: none;
-	box-sizing: border-box;
 	padding: 0;
-	font-size: 1vw;
-	text-align: left;
-    pointer-events: initial;
 }
 
-#bet-input input:focus {
-	border: 0.2vw solid black;
+.bet-input p {
+	position: absolute;
+	top: 0;
+	left: 1vw;
+	height: 1.2vw;
+	padding: 0;
+	background: #000;
+	font-size: 2vh;
+	color: #fff;
+}
+
+.decrease-bet {
+	left: 0;
+	bottom: 0.8vw;
+}
+
+.increase-bet {
+	right: 0;
+	bottom: 0.8vw;
 }
 
 #chip-indicator, #chip-indicator * {
-	z-index: 11;
+	z-index: 5;
 	overflow: visible;
 }
 
 .bet-particle {
+	z-index: 5;
 	opacity: 0%;
     font-size: large;
     font-weight: bolder;
