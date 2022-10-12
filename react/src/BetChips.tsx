@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import style from "./style/chips.module.css"
+const ipcRenderer = window.require("electron").ipcRenderer
 
 export function BetInput(params : {
     location : string[],
@@ -27,6 +28,15 @@ export function BetInput(params : {
     useEffect(()=>{
         //if (bet == 0) remove the betchip
     }, [bet])
+
+    useEffect(()=>{
+        ipcRenderer.send("placeBet", [
+            "user",
+            bet,
+            "roulette",
+            params.location.join(","),
+        ])
+    }, [])
 
     return (
         <div className={[style["chip"], style["bet-input"]].join(" ")} style={{

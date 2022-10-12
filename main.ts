@@ -1,7 +1,13 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const db = require("./database")
+/*const {
+  addUser,
+  dropUser,
+  newPurchase,
+  placeBet,
+} = require("./database/index.ts")*/
+const db = require("./database/index")
 
 const headerHeight = 60
 const tableWidth = 762
@@ -14,7 +20,7 @@ function createWindow() {
   var screenSize = screen.getPrimaryDisplay().size
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    fullscreen: true,
+    fullscreen: false,
     minWidth: Math.ceil(tableHeight * 0.5 + headerHeight),
     minHeight: Math.ceil(tableWidth * 0.5),
     maxWidth: screenSize.width,
@@ -36,6 +42,7 @@ function createWindow() {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
+  // Window functions
   ipcMain.on("minimise", () => {
     mainWindow.minimize()
   })
@@ -55,10 +62,6 @@ function createWindow() {
     mainWindow.close()
   })
 
-  ipcMain.on("", () => {
-    
-  })
-
   mainWindow.on("resize", () => {
     console.log(mainWindow.getBounds().width, "", mainWindow.isMaximized())
   })
@@ -69,6 +72,11 @@ function createWindow() {
 
   mainWindow.on("focus", () => {
     mainWindow.webContents.send("focus")
+  })
+
+  // Database functions
+  ipcMain.on("placeBet", (args) => {
+    db.placeBet(args[0], args[1], args[2], args[3],)
   })
 }
 
