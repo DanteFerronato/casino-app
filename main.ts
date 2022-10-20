@@ -37,7 +37,7 @@ function createWindow() {
   })
 
   // Load the react development server
-  mainWindow.loadURL("http://localhost:3000");
+  mainWindow.loadURL("http://localhost:3000/hub");
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
