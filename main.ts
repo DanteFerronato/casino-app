@@ -76,8 +76,15 @@ function createWindow() {
 
   // Database functions
   ipcMain.handle("place-bet", async (e, ...args) => {
-    console.log(args)
-    await db.placeBet(args[0], args[1], args[2], args[3],)
+    return await db.placeBet(args) // username, amount, game, position
+  })
+
+  ipcMain.handle("update-bet-amount", async (e, ...args) => {
+    await db.updateBetAmount(args) // id, amount
+  })
+
+  ipcMain.handle("close-bet", async (e, ...args) => {
+    await db.closeBet(args) // id, winner
   })
 }
 
