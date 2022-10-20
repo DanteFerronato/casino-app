@@ -1,6 +1,4 @@
-import { Paper } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { JsxElement } from 'typescript';
 import { BetInput, BetParticle, ChipIndicator } from './BetChips';
 import style from "./style/roulette.module.css"
 const ipcRenderer = window.require("electron").ipcRenderer
@@ -25,6 +23,7 @@ export default function Layout(params : {
     const relocateIndicator = (position : string[]) => {
         setIndicatorLocation(position)
     }
+    
 
     let carpetNums : JSX.Element[] = []
     let betgridNums : JSX.Element[] = []

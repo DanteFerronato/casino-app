@@ -12,26 +12,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// import RalewayWoff2 from './CairoPlayFont.ttf';
 
 const theme = createTheme({
-  //   typography: {
-  //     fontFamily: 'Raleway, Arial',
-  //   },
-  //   components: {
-  //     MuiCssBaseline: {
-  //       styleOverrides: `
-  //         @font-face {
-  //           font-family: 'Raleway';
-  //           font-style: normal;
-  //           font-display: swap;
-  //           font-weight: 400;
-  //           src: local('Raleway'), local('Raleway-Regular'), url(${RalewayWoff2}) format('woff2');
-  //           unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-  //         }
-  //       `,
-  //     },
-  //   },
 });
 
 function Copyright(props: any) {
@@ -59,7 +41,7 @@ export default function Register() {
       <CssBaseline />
       <Box
         sx={{
-          padding: 10,
+          padding: 3,
           backgroundImage: `url("https://cdni.russiatoday.com/actualidad/public_images/2018.12/article/5c22479408f3d99b5d8b4567.jpg")`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -69,7 +51,7 @@ export default function Register() {
           elevation={20}
           sx={{
             width: 500,
-            height: 670,
+            height: 720,
             margin: "auto",
             bgcolor: "#000000c9",
           }}
@@ -102,6 +84,39 @@ export default function Register() {
                   noValidate
                   sx={{ mt: 1 }}
                 >
+                  <TextField
+                    sx={{
+                      "& label.Mui-focused": {
+                        color: "white",
+                      },
+                      "& .MuiInput-underline:after": {
+                        borderBottomColor: "black",
+                      },
+                      "& .MuiInput-underline:before": {
+                        borderBottomColor: "white",
+                      },
+                      // "& .MuiInput-underline:hover:after": {
+                      //   borderBottomColor: "red",
+                      // },
+                      "& .MuiInput-underline:hover:before": {
+                        borderBottom: "3px solid #fafafade !important",
+                      },
+                      "& .MuiInputLabel-standard": {
+                        color: "white",
+                      },
+                      "& .MuiInputBase-input": {
+                        color: "white",
+                      },
+                    }}
+                    variant="standard"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="username"
+                    label="Username"
+                    name="username"
+                    autoComplete="username"
+                  />
                   <TextField
                     sx={{
                       "& label.Mui-focused": {
@@ -232,7 +247,17 @@ export default function Register() {
                       height: 40,
                     }}
                   >
-                    Sign In
+                    <Link
+                      sx={{
+                        color: "white",
+                        textDecoration: "none",
+                        fontFamily: "Arial",
+                        fontSize: 13,
+                      }}
+                      href="./"
+                    >
+                      Sign Up
+                    </Link>
                   </Button>
                   <Grid container>
                     <Grid item xs></Grid>

@@ -37,7 +37,7 @@ function createWindow() {
   })
 
   // Load the react development server
-  mainWindow.loadURL("http://localhost:3000");
+  mainWindow.loadURL("http://localhost:3000/");
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -78,6 +78,11 @@ function createWindow() {
   ipcMain.handle("place-bet", async (e, ...args) => {
     console.log(args)
     await db.placeBet(args[0], args[1], args[2], args[3],)
+  })
+
+  ipcMain.handle("add-user", async (e, ...args) => {
+    console.log(args)
+    await db.addUser(args[0], args[1], args[2],)
   })
 }
 

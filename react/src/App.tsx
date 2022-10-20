@@ -17,13 +17,14 @@ export default function App() {
             <TitleBar />
             <BrowserRouter>
                 <Routes>
-                    <Route path="/hub" element={<Hub />} />
+                    <Route path="/" element={<Hub />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/roulette" element={<Roulette />} />
                 </Routes>
             </BrowserRouter>
             {blur? <div id="blur-shade" />: <></>}
+            <audio src="/img/music.mp3" itemType='mp3' autoPlay loop></audio>
         </div>
     )
 }
