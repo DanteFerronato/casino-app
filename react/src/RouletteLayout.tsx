@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { JsxElement } from 'typescript';
 import { BetInput, BetParticle, ChipIndicator } from './BetChips';
 import style from "./style/roulette.module.css"
+const ipcRenderer = window.require("electron").ipcRenderer
 
 export default function Layout(params : {
     betsClosed : boolean,
@@ -12,15 +13,17 @@ export default function Layout(params : {
     const [indicatorLocation, setIndicatorLocation] = useState(["0", "0"])
     const [betParticleM, setParticleM] = useState(1)
     
-    const handleRelocate = (position : string[], id : string) => {
-        switch (id) {
-            case "bet-input": setInputLocation(position)
-                break;
-            case "chip-indicator": setIndicatorLocation(position)
-                break;
-            // case "bet-particle": setParticleLocation(position)
-                // break;
-        }
+    const addBet = (position : string[]) => {
+        setInputLocation(position)
+        ipcRenderer.invoke("place-bet",
+            "user",
+            1,
+            "roulette",
+            position.join(","),
+        )
+    }
+    const relocateIndicator = (position : string[]) => {
+        setIndicatorLocation(position)
     }
 
     let carpetNums : JSX.Element[] = []
@@ -29,18 +32,18 @@ export default function Layout(params : {
         carpetNums.push(<LayoutCell n={i} name={null} />)
         betgridNums.push(<BetgridCell
             type={'single'} n={[i]} name={null}
-            inputRelocate={handleRelocate} />)
+            addBet={addBet} relocateIndicator={relocateIndicator} />)
         if (i%3 != 0) {
             betgridNums.push(<BetgridCell
                 type={'double'} n={[i, i + 1]} name={null}
-                inputRelocate={handleRelocate} />)
+                addBet={addBet} relocateIndicator={relocateIndicator} />)
             if (i<34) betgridNums.push(<BetgridCell
                 type={'quad'} n={[i, i+1, i+3, i+4]} name={null}
-                inputRelocate={handleRelocate} />)
+                addBet={addBet} relocateIndicator={relocateIndicator} />)
         }
         if (i<34) betgridNums.push(<BetgridCell
             type={'double'} n={[i, i+3]} name={null}
-            inputRelocate={handleRelocate} />)
+            addBet={addBet} relocateIndicator={relocateIndicator} />)
     }
 
     useEffect (() => {
@@ -117,7 +120,8 @@ function BetgridCell(params : {
     type : string, // One of either single, double, quad or special
     n : number[] | null,
     name : string | null,
-    inputRelocate : (position : string[], id : string) => void,
+    addBet : (position : string[]) => void,
+    relocateIndicator : (position : string[]) => void,
 }) {
     const single = params.type == "single"
     const double = params.type == "double"
@@ -137,6 +141,8 @@ function BetgridCell(params : {
     }
     const name = special? params.name! : params.type+"-"+params.n?.join("-")
 
+    const [betted, toggleBetted] = useState(false)
+
     return (
         <div id={"betgrid-"+name} style={{
             "gridArea" : !special? 7-row! + " / " + column! : "none",
@@ -144,9 +150,11 @@ function BetgridCell(params : {
         }}
         onClick={e=>{
             console.log("click ", name, column, row)
-            params.inputRelocate(centreredPosition(column, row), "bet-input")
+            params.addBet(centreredPosition(column, row))
+            toggleBetted(true)
         }} onMouseOver={e=>{
-            params.inputRelocate(centreredPosition(column, row), "chip-indicator")
+            params.relocateIndicator(centreredPosition(column, row))
+            toggleBetted(true)
         }} />
     )
 }
@@ -159,7 +167,7 @@ const gridToPosition = (columns : number[], rows : number[]) => {
             if (Object.prototype.hasOwnProperty.call(list, e)) {
                 sum += list[e]
                 sumList.push(sum)
-            };
+            }
         }
         let newList = sumList.map(e => {
             return 100*e/sum+"%"

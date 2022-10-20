@@ -29,15 +29,6 @@ export function BetInput(params : {
         //if (bet == 0) remove the betchip
     }, [bet])
 
-    useEffect(()=>{
-        ipcRenderer.send("placeBet", [
-            "user",
-            bet,
-            "roulette",
-            params.location.join(","),
-        ])
-    }, [])
-
     return (
         <div className={[style["chip"], style["bet-input"]].join(" ")} style={{
             "left": params.location[0],

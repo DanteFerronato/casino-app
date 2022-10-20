@@ -75,8 +75,9 @@ function createWindow() {
   })
 
   // Database functions
-  ipcMain.on("placeBet", (args) => {
-    db.placeBet(args[0], args[1], args[2], args[3],)
+  ipcMain.handle("place-bet", async (e, ...args) => {
+    console.log(args)
+    await db.placeBet(args[0], args[1], args[2], args[3],)
   })
 }
 
