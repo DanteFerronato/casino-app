@@ -73,3 +73,6 @@ export function BetParticle(params : {
         <p className={style["bet-particle"]} style={{"left": params.location[0], "top": params.location[1]}}>{"x"+params.multiplier}</p>
     )
 }
+
+const chipValues = [1, 2, 5, 10, 25, 100, 500, 2000, 9999]
+const chipColours = ["#aaa", "#f9b", "#c22", "#22e", "#282", "#222", "#526", "#af7", "#5c8"]
