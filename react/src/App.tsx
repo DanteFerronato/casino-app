@@ -17,7 +17,7 @@ export default function App() {
             <TitleBar />
             <BrowserRouter>
                 <Routes>
-                    <Route path="/hub" element={<Hub />} />
+                    <Route path="/" element={<Hub />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/roulette" element={<Roulette />} />

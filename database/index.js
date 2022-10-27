@@ -13,7 +13,7 @@ new Schema({ // Lists all users who signed up, including the house itself
 
 const Purchase = mongoose.model("purchase",
 new Schema({ // Lists all purchases by all users
-    username: String,  // Identifies user
+    userId: String,  // Identifies user
     amount: Number, // (of money, purchased)
     time: { type : Date, default : now, }, // Date and time of purchase
 },))
@@ -39,22 +39,24 @@ const addUser = async ([
         email: email,
         password: password,
     })
-    await newUser.save()
+    return (await newUser.save())._id.toHexString()
 }
 
 const dropUser = async ([
-    username,
-]) => {} // TODO
+    id,
+]) => {
+    User.findByIdAndDelete(id)
+}
 
 const newPurchase = async ([
-    username,
+    userId,
     amount,
 ]) => {
     let newPurchase_ = new Purchase({
-        username: username,
+        userId: userId,
         amount: amount,
     })
-    await newPurchase_.save()
+   return (await newPurchase_.save())._id.toHexString()
 }
 
 const placeBet = async ([
@@ -76,9 +78,8 @@ const updateBetAmount = async ([
     id,
     amount,
 ]) => {
-    await Bet.findOneAndUpdate({
-        _id: id,
-    },{
+    await Bet.findByIdAndUpdate(
+        id, {
         amount: amount,
     })
 }

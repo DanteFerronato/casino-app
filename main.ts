@@ -37,7 +37,7 @@ function createWindow() {
   })
 
   // Load the react development server
-  mainWindow.loadURL("http://localhost:3000/hub");
+  mainWindow.loadURL("http://localhost:3000/");
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -75,16 +75,28 @@ function createWindow() {
   })
 
   // Database functions
+  ipcMain.handle("add-user", async (e, ...args) => {
+    return await db.placeBet(args) // Args: username, email, password
+  })
+
+  ipcMain.handle("drop-user", async (e, ...args) => {
+    await db.closeBet(args) // Args: id
+  })
+
+  ipcMain.handle("new-purchase", async (e, ...args) => {
+    return await db.placeBet(args) // Args: userId, amount
+  })
+
   ipcMain.handle("place-bet", async (e, ...args) => {
-    return await db.placeBet(args) // username, amount, game, position
+    return await db.placeBet(args) // Args: username, amount, game, position
   })
 
   ipcMain.handle("update-bet-amount", async (e, ...args) => {
-    await db.updateBetAmount(args) // id, amount
+    await db.updateBetAmount(args) // Args: id, amount
   })
 
   ipcMain.handle("close-bet", async (e, ...args) => {
-    await db.closeBet(args) // id, winner
+    await db.closeBet(args) // Args: id, winner
   })
 }
 

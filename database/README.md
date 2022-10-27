@@ -8,14 +8,12 @@
     + currentMoney: Money currently owned by the user
     + isAdmin: Whether the user is the house or not
 
-+ PurchaseLog: Lists all purchases by all users
-    + id: Uniquely id's purchase
-    + username: Identifies user
++ Purchase: Lists all purchases by all users
+    + userId: Identifies user
     + amount: (of money, purchased)
     + time: Date and time of purchase
 
 + Bets: Lists all current and past bets made in all games
-    + id: Uniquely id's bet
     + username: Identifies user
     + amount: (of money, betted)
     + game: In which game is it betted (currently can only be roulette)
