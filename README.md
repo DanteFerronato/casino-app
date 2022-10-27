@@ -1,7 +1,7 @@
 # Casino App
 This project consists of a desktop gambling app, eventually supporting user profiles, in-game purchases and multiple games.
 > Thorough the development of this app we will learn to use javascript tech such as
-**[Electron](https://github.com/electron)** and **[React](https://github.com/facebook/react)**!
+**[Electron](https://github.com/electron)**, **[React](https://github.com/facebook/react)** and **[Mongoose](https://github.com/Automattic/mongoose)**!
 
 ## Team
 We are a team of two:\
@@ -20,23 +20,26 @@ We are a team of two:\
 ### Functionality
 + [ ] 😔 Make the roulette functional
     + [x] 😃 Build a sensor grid over layout
-    + [ ] 😔 Make a functional betting chip
-    + [ ] 😔 Build the betting-results cycle
-    + [ ] 😔 Provide support for simultaneous multiuser gameplay
-+ [ ] 😔 Properly build and connect to the database
-    + [ ] 😔 Working database structure & link
+    + [x] 😃 Build the betting-results cycle
+    + [ ] 😐 Make a functional betting chip
+    + [ ] 😔 Support special (zero and non-number) bets
++ [ ] 😐 Properly build and connect to the database
+    + [x] 😃 Working database structure & link
     + [ ] 😔 Functional user management
     + [ ] 😔 Functional currency management
 
-### Other Tasks
+### Other Tasks or Ideas
 + [ ] 😔 Add roulette settings
     + [ ] 😔 French roulette
     + [ ] 😔 _Le Partage_ and _En Prison_ rules
 + [ ] 😔 Add a game selection menu
++ [ ] 😔 Design Blackjack
 + [ ] 😔 Add other games
     + **_Truco?_**
     + **_Slots?_**
-    + **_Blackjack?_**
+    + **_Poker?_**
++ [ ] 😔 Provide support for simultaneous multiuser gameplay
++ [ ] 😔 Build some _[TTT](https://github.com/melfidol/Tateti)_ cameo
 
 ## Commit Policy
 We aim for each side branch commit to represent a single task, whether successful or not.

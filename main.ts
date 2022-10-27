@@ -75,9 +75,28 @@ function createWindow() {
   })
 
   // Database functions
+  ipcMain.handle("add-user", async (e, ...args) => {
+    return await db.placeBet(args) // Args: username, email, password
+  })
+
+  ipcMain.handle("drop-user", async (e, ...args) => {
+    await db.closeBet(args) // Args: id
+  })
+
+  ipcMain.handle("new-purchase", async (e, ...args) => {
+    return await db.placeBet(args) // Args: userId, amount
+  })
+
   ipcMain.handle("place-bet", async (e, ...args) => {
-    console.log(args)
-    await db.placeBet(args[0], args[1], args[2], args[3],)
+    return await db.placeBet(args) // Args: username, amount, game, position
+  })
+
+  ipcMain.handle("update-bet-amount", async (e, ...args) => {
+    await db.updateBetAmount(args) // Args: id, amount
+  })
+
+  ipcMain.handle("close-bet", async (e, ...args) => {
+    await db.closeBet(args) // Args: id, winner
   })
 
   ipcMain.handle("add-user", async (e, ...args) => {

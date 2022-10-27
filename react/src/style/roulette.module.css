@@ -149,7 +149,7 @@ section {
 }
 
 /* For dev purposes */
-#bet-layout>*:not(.chip) {
+.debug-sight #bet-layout>*:not(.chip) {
     border: 1px dashed grey;
 }
 

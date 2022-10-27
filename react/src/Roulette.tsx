@@ -30,8 +30,14 @@ export default function Roulette() {
     }, [betsClosed]
     )
 
+    const [debug, toggleDebug] = useState(false)
+
     return (
-        <section className={style["bet-particle-animate"]}>
+        <section className={[
+            style["bet-particle-animate"], debug? style["debug-sight"]:'',
+        ].join(" ")} onKeyDown={e => {
+            if (e.key == 'AltGraph') {toggleDebug(!debug); console.log("AltGr down")}
+        }} tabIndex={0}>
             <div id={style["table"]}>
                 <p id={style["result-display"]}>{result}</p>
                 <img src="img/rouletteCarpet.png" alt="Green roulette table background" />
