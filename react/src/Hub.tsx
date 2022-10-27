@@ -1,7 +1,6 @@
 import { Box, ButtonBase, Grid, Link } from "@mui/material";
 import { Stack } from "@mui/system";
 
-
 export default function Hub() {
   return (
     <Grid
@@ -68,7 +67,6 @@ export default function Hub() {
                   fontSize: 20,
                 }}
                 href="./Roulette"
-                variant="body2"
               >
                 Jugar
               </Link>

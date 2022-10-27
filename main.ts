@@ -98,6 +98,11 @@ function createWindow() {
   ipcMain.handle("close-bet", async (e, ...args) => {
     await db.closeBet(args) // Args: id, winner
   })
+
+  ipcMain.handle("add-user", async (e, ...args) => {
+    console.log(args)
+    await db.addUser(args[0], args[1], args[2],)
+  })
 }
 
 // This method will be called when Electron has finished

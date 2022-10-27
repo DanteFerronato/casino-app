@@ -24,6 +24,7 @@ export default function App() {
                 </Routes>
             </BrowserRouter>
             {blur? <div id="blur-shade" />: <></>}
+            <audio src="/img/music.mp3" itemType='mp3' autoPlay loop></audio>
         </div>
     )
 }
