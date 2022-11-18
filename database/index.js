@@ -3,9 +3,9 @@ const { now, Schema, model } = require("mongoose")
 
 const User = model("user",
 new Schema({ // Lists all users who signed up, including the house itself
-    username : { type: String, required : true }, // Uniquely identifies the user
+    username : { type : String, required : true, index : {unique : true} }, // Uniquely identifies the user
     email : String, // Is employed on sign in, is unique
-    password : String, // Is employed on sign in
+    password : { type : String, required : true}, // Is employed on sign in
     money : { type : Number, default : 0, }, // Total money purchased by the user in the casino casino, including losses
     currentMoney : { type : Number, default : 0, }, // Money currently owned by the user
     isAdmin : { type : Boolean, default : false, }, // Whether the user is the house or not
@@ -93,6 +93,7 @@ const closeBet = async ([
         winner: null,
     },{
         winner: winner,
+        deathTime: now,
     })
     else await Bet.findOneAndDelete({
         _id: id,

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import TitleBar from './TitleBar';
 import Layout from './RouletteLayout';
 import style from "./style/roulette.module.css"
@@ -27,16 +27,33 @@ export default function Roulette() {
             ref.current?.classList.toggle("bet-particle-animate")
             console.log("bets off")
         }, 3000)
-    }, [betsClosed]
-    )
+    }, [betsClosed])
 
     const [debug, toggleDebug] = useState(false)
+    const [reBet, updateReBet] = useState(false)
+    useEffect (() => {
+
+    }, [reBet])
+    const debugSense = (e : KeyboardEvent) => {
+        if (e.key == 'AltGraph') {
+            toggleDebug(p => !p)
+            console.log("AltGr down")
+        }
+    }
+    useEffect(()=>{
+        
+        window.addEventListener("keydown", e => debugSense(e))
+        return () => {window.removeEventListener("keydown", e => debugSense(e))}
+    }, [window])
 
     return (
         <section className={[
             style["bet-particle-animate"], debug? style["debug-sight"]:'',
         ].join(" ")} onKeyDown={e => {
-            if (e.key == 'AltGraph') {toggleDebug(!debug); console.log("AltGr down")}
+            if (e.key == 'Space' && !betsClosed) {
+                toggleDebug(!reBet)
+                console.log("Space down")
+            }
         }} tabIndex={0}>
             <div id={style["table"]}>
                 <p id={style["result-display"]}>{result}</p>

@@ -7,39 +7,55 @@ export default function Layout(params : {
     betsClosed : boolean,
     handleBetsClosed : () => void,
 }) {
-    const [inputLocation, setInputLocation] = useState(["0", "0"])
-    const [bets, updateBets] = useState([0])
+    const [bets, updateBets] = useState([{
+        id: "0",
+        position: '',
+        user: "_house",
+        betInput: <></>
+    }])
     const [indicatorLocation, setIndicatorLocation] = useState(["0", "0"])
     const [betParticleM, setParticleM] = useState(1)
     
     const placeBet = async (position : string[], positionName : string) => {
-        setInputLocation(position)
-        updateBets([...bets, await ipcRenderer.invoke("place-bet",
+        const id = await ipcRenderer.invoke("place-bet",
             "user",
             1,
             "roulette",
             positionName,
-        )])
-        console.log(bets)
+        )
+        updateBets(p => [...p, {
+            id: id,
+            position: positionName,
+            user: "user",
+            betInput: <BetInput
+                location={position} betsClosed={params.betsClosed}
+                updateBetAmount={
+                    (amount : number) => updateBetAmount(id, amount)
+                } closeBet={
+                    (winner : string | null) => closeBet(id, winner)
+                } />
+        }])
+        console.log("place", bets)
     }
     const updateBetAmount = async (id : number, amount : number) => {
         ipcRenderer.invoke("update-bet-amount",
             id,
             amount,
         )
+        console.log("update", bets)
     }
-    const closeBet = async (id : string, winner : string) => {
-
+    const closeBet = async (id : string, winner : string | null) => {
         ipcRenderer.invoke("close-bet",
             id,
             winner,
         )
+        updateBets(p => p.splice(p.indexOf(p.filter(e => {return e.id == id})[0])))
+        console.log("close", bets)
     }
     const relocateIndicator = (position : string[]) => {
         setIndicatorLocation(position)
     }
     
-
     let carpetNums : JSX.Element[] = []
     let betgridNums : JSX.Element[] = []
     for (let i = 1; i <= 36; i++) {
@@ -66,8 +82,7 @@ export default function Layout(params : {
 
     useEffect (() => {
         params.handleBetsClosed()
-    }, [params.betsClosed]
-    )
+    }, [params.betsClosed])
     
     return (
         <div id={style["layout-container"]}>
@@ -89,22 +104,12 @@ export default function Layout(params : {
             </div>
             <div id={style["bet-layout"]}>
                 {betgridNums}
-                <div id={style["betgrid-0"]}></div>
-                <div id={style["betgrid-00"]}></div>
-                <div id={style["betgrid-0-00"]}></div>
-                <div id={style["betgrid-low"]}></div>
-                <div id={style["betgrid-high"]}></div>
-                <div id={style["betgrid-even"]}></div>
-                <div id={style["betgrid-odd"]}></div>
-                <div id={style["betgrid-red"]}></div>
-                <div id={style["betgrid-black"]}></div>
-                <div id={style["betgrid-dz-1"]}></div>
-                <div id={style["betgrid-dz-2"]}></div>
-                <div id={style["betgrid-dz-3"]}></div>
+                {["0", "00", "0-00", "low", "high", "even", "odd", "red", "black", "dz-1", "dz-2", "dz-3"]
+                .map(e => <div id={style["betgrid-"+e]} />)}
             </div>
-            <BetInput location={inputLocation} betsClosed={params.betsClosed} />
+            {bets.map(e => e.betInput)}
             <ChipIndicator location={indicatorLocation} />
-            <BetParticle location={inputLocation} multiplier={betParticleM} betsClosed={params.betsClosed} />
+            <BetParticle location={[]} multiplier={betParticleM} betsClosed={params.betsClosed} />
         </div>
     )
 }

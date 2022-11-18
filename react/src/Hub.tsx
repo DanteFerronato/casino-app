@@ -1,5 +1,6 @@
-import { Box, ButtonBase, Grid, Link } from "@mui/material";
+import { Box, ButtonBase, Grid } from "@mui/material";
 import { Stack } from "@mui/system";
+import { Link } from "react-router-dom"
 
 export default function Hub() {
   return (
@@ -59,15 +60,7 @@ export default function Hub() {
                 fontSize: 20,
               }}
             >
-              <Link
-                sx={{
-                  color: "white",
-                  textDecoration: "none",
-                  fontFamily: "Abel",
-                  fontSize: 20,
-                }}
-                href="./Roulette"
-              >
+              <Link to="./Roulette">
                 Jugar
               </Link>
             </ButtonBase>
@@ -118,16 +111,7 @@ export default function Hub() {
                 fontSize: 20,
               }}
             >
-              <Link
-                sx={{
-                  color: "white",
-                  textDecoration: "none",
-                  fontFamily: "Abel",
-                  fontSize: 20,
-                }}
-                href="./Login"
-                variant="body2"
-              >
+              <Link to="./Login">
                 Jugar
               </Link>
             </ButtonBase>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import style from "./style/chips.module.css"
-const ipcRenderer = window.require("electron").ipcRenderer
 
 export function BetInput(params : {
     location : string[],
     betsClosed : boolean,
+    updateBetAmount : (amount : number) => void,
+    closeBet : (winner : string | null) => void,
 }) {
     const [disabled, setDisabled] = useState(false)
     useEffect(()=>{
@@ -21,12 +22,13 @@ export function BetInput(params : {
         let newBet = delta?
             (betSnapPos[betSnapOrder]!=500)? betSnapPos[betSnapOrder+1] : bet :
             (bet>betSnapPos[betSnapOrder])? betSnapPos[betSnapOrder] : betSnapPos[betSnapOrder-1]
-        if (newBet > 999) newBet = 999
+        if (newBet > 9999) newBet = 9999
         let balanceChange = newBet - bet
         setBet(newBet)
     }
     useEffect(()=>{
-        //if (bet == 0) remove the betchip
+        params.updateBetAmount(bet)
+        if (bet == 0) params.closeBet(null)
     }, [bet])
 
     return (
